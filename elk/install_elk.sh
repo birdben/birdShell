@@ -1,4 +1,18 @@
+#!bin/bash
+
+# ----------------------------------------------------------------------
+# name:         install_elk.sh
+# version:      1.0
+# createTime:   2016-08-11
+# description:  elk环境安装
+# author:       birdben
+# email:        191654006@163.com
+# github:       https://github.com/birdben
+# ----------------------------------------------------------------------
+
+# 安装目录
 software_path='/software'
+# 下载软件目录
 install_home='/test'
 
 
@@ -34,6 +48,7 @@ fi
 
 java_install_cmd="tar -zxf $java_tar -C $software_path/ && sudo ln -s $java_home $java_path"
 echo "running $java_install_cmd"
+# 执行安装java命令
 eval ${java_install_cmd}
 java -version
 echo "################# Java install end #################"
@@ -60,6 +75,7 @@ fi
 
 redis_install_cmd="tar -zxf $redis_tar -C $software_path/ && cp $redis_config_name $redis_home/ && cd $redis_home && make && ./src/redis-server redis.conf"
 echo "running $redis_install_cmd"
+# 执行安装redis命令
 eval ${redis_install_cmd}
 echo "################# Redis install end #################"
 
@@ -85,6 +101,7 @@ fi
 
 logstash_install_cmd="tar -zxf $logstash_tar -C $software_path/ && mkdir -p $logstash_home/conf/ && cp $logstash_config_name $logstash_home/conf/ && cd $logstash_home && nohup ./bin/logstash -f conf/$logstash_config_name &"
 echo "running $logstash_install_cmd"
+# 执行安装logstash命令
 eval ${logstash_install_cmd}
 echo "################# Logstash install end #################"
 
@@ -114,6 +131,7 @@ fi
 
 es_install_cmd="tar -zxf $es_tar -C $software_path/ && tar -zxf $es_ik_config_tar -C $es_home/config/ && cp $es_ik_name $es_httpclient_name $es_httpcore_name $es_home/lib/ && cp $es_config_name $es_home/config/ && cd $es_home && ./bin/plugin --install mobz/elasticsearch-head && ./bin/elasticsearch -d"
 echo "running $es_install_cmd"
+# 执行安装es命令
 eval ${es_install_cmd}
 echo "################# ES install end #################"
 
@@ -134,12 +152,17 @@ fi
 
 kibana_install_cmd="tar -zxf $kibana_tar -C $software_path/ && cp $kibana_config_name $kibana_home/config/ && cd $kibana_home && nohup ./bin/kibana &"
 echo "running $kibana_install_cmd"
+# 执行安装kibana命令
 eval ${kibana_install_cmd}
 echo "################# Kibana install end #################"
 
 
 ################# check process #################
+# 检测安装的elk进程
 sleep 30
+echo "################# check redis process start #################"
+ps -aux | grep redis
+echo "################# check redis process end #################"
 echo "################# check logstash process start #################"
 ps -aux | grep logstash
 echo "################# check logstash process end #################"
