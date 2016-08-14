@@ -1,0 +1,60 @@
+{
+  "mappings": {
+    "command": {
+      "properties": {
+        "NU": {
+          "type": "string",
+          "index": "not_analyzed"
+        },
+        "LU": {
+          "type": "string",
+          "index": "not_analyzed"
+        },
+        "TIME": {
+          "type": "string",
+          "index": "not_analyzed"
+        },
+        "message": {
+          "type": "string",
+          "index": "not_analyzed"
+        },
+        "type": {
+          "type": "string",
+          "index": "not_analyzed"
+        },
+        "tags": {
+          "type": "string",
+          "index": "not_analyzed"
+        },
+        "path": {
+          "type": "string",
+          "index": "not_analyzed"
+        },
+        "@timestamp": {
+          "format": "dateOptionalTime",
+          "type": "date"
+        },
+        "HOSTNAME": {
+          "type": "string",
+          "index": "not_analyzed"
+        },
+        "@version": {
+          "type": "string",
+          "index": "not_analyzed"
+        },
+        "host": {
+          "type": "string",
+          "index": "not_analyzed"
+        },
+        "CMD": {
+          "type": "string",
+          "index": "not_analyzed"
+        },
+        "LI": {
+          "type": "string",
+          "index": "not_analyzed"
+        }
+      }
+    }
+  }
+}
