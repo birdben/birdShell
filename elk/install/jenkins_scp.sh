@@ -20,7 +20,7 @@ online_soft_path="/software"
 online_tar_path="/test"
 ssh_user="ubuntu"
 ssh_hosts="54.222.142.56"
-install_components="java es logstash kibana redis"
+install_components="java es logstash_indexer logstash_shipper kibana redis"
 
 cp ~/workspace_git/birdShell/elk/install/* $local_tar_path/
 
