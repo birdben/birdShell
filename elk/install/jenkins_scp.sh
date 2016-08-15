@@ -15,14 +15,12 @@
 # 这样用jdk举例，安装目录始终是/software/jdk，但是java_home环境变量始终是/usr/local/java
 # 因为/usr/local/java -> /software/jdk软连接指向的是实际安装的目录
 
-local_tar_path="/Users/ben/Downloads/ELK/install_elk"
+local_tar_path="/Users/ben/workspace_git/birdShell/elk/install"
 online_soft_path="/software"
 online_tar_path="/test"
 ssh_user="ubuntu"
-ssh_hosts="54.222.142.56"
-install_components="java es logstash_indexer logstash_shipper kibana redis"
-
-cp ~/workspace_git/birdShell/elk/install/* $local_tar_path/
+ssh_hosts="54.223.46.179"
+install_components="java es logstash_indexer kibana"
 
 ssh_host_arr=($ssh_hosts)
 install_component_arr=($install_components)
@@ -47,7 +45,7 @@ EOF
 	do
 		ssh -t -t $ssh_user@$ssh_host <<EOF
 		echo "正在安装${install_component}............."
-		cd $online_tar_path
+		cd $online_tar_path/$install_component
 		sh $install_component.sh $online_soft_path
 		exit
 EOF
