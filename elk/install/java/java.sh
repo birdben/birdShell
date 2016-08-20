@@ -10,15 +10,15 @@
 # github:       https://github.com/birdben
 # ----------------------------------------------------------------------
 
-software_path=$1
+install_path=$1
 
 ################# Java install #################
-echo "安装目录是：$software_path"
+echo "安装目录是：$install_path"
 echo "################# Java install start #################"
 java_download_version='8u91'
 java_version='1.8.0_91'
 java_tar='jdk-'${java_download_version}'-linux-x64.tar.gz'
-java_home=$software_path'/jdk'${java_version}
+java_home=$install_path'/jdk'${java_version}
 java_path='/usr/local/java'
 
 if [ -d $java_home ]; then
@@ -42,7 +42,7 @@ else
   echo "$java_tar exists"
 fi
 
-java_install_cmd="tar -zxf $java_tar -C $software_path/ && sudo ln -s $java_home $java_path"
+java_install_cmd="tar -zxf $java_tar -C $install_path/ && sudo ln -s $java_home $java_path"
 echo "running $java_install_cmd"
 # 执行安装java命令
 eval ${java_install_cmd}
