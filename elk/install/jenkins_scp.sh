@@ -25,7 +25,7 @@ remote_base_path="/test"
 ssh_user="ubuntu"
 ssh_hosts="54.222.234.162"
 # 安装的组件
-install_components="java es"
+install_components="java es logstash_indexer logstash_shipper kibana redis"
 
 ssh_host_arr=($ssh_hosts)
 install_component_arr=($install_components)
