@@ -45,16 +45,16 @@ fi
 
 if [ ! -f $es_base_version/$es_tar ]; then
   echo "elasticsearch tar not found - downloading $es_tar..."
-  curl -o $es_tar https://download.elastic.co/elasticsearch/elasticsearch/$es_tar
+  curl -o $es_base_version/$es_tar https://download.elastic.co/elasticsearch/elasticsearch/$es_tar
 fi
 
 if [ ! -f $es_base_version/$es_head_plugin ]; then
   echo "elasticsearch-head zip not found - downloading $es_head_plugin..."
   if [ $es_base_version = '1.x' ]; then
-  	curl -o $es_head_plugin https://codeload.github.com/mobz/elasticsearch-head/zip/1.x
+  	curl -o $es_base_version/$es_head_plugin https://codeload.github.com/mobz/elasticsearch-head/zip/1.x
   fi
   if [ $es_base_version = '2.x' ]; then
-  	curl -o $es_head_plugin https://codeload.github.com/mobz/elasticsearch-head/zip/master
+  	curl -o $es_base_version/$es_head_plugin https://codeload.github.com/mobz/elasticsearch-head/zip/master
   fi
 fi
 
