@@ -77,11 +77,10 @@ if [ $es_base_version = '2.x' ]; then
   eval ${es_install_2_x_ik_plugin_cmd}
   eval ${es_install_2_x_head_plugin_cmd}
 fi
-eval ${es_install_head_plugin_cmd}
 eval ${es_startup_cmd}
 echo "################# ES install end #################"
 
 sleep 30
 echo "################# check elasticsearch process start #################"
-ps -aux | grep elasticsearch
+ps -ef | grep elasticsearch
 echo "################# check elasticsearch process end #################"
