@@ -10,10 +10,31 @@
 # github:       https://github.com/birdben
 # ----------------------------------------------------------------------
 
+<<COMMENT
 # 安装软件目录/software/
 # 创建软连接目录/usr/local指向/software目录
 # 这样用jdk举例，安装目录始终是/software/jdk，但是java_home环境变量始终是/usr/local/java
 # 因为/usr/local/java -> /software/jdk软连接指向的是实际安装的目录
+
+# 修改elasticsearch.yml, logstash.conf, kibana.yml配置文件
+# java环境变量配置
+# sudo apt-get install unzip
+# sudo apt-get update
+# sudo apt-get install build-essential
+# /etc/bashrc 或者 /etc/bash.bashrc
+
+# HISTDIR是Command命令保存的log文件路径，这里需要注意当前操作用户一定要对该log文件路径有读写权限
+HISTDIR='/software/command.log'
+if [ ! -f $HISTDIR ];
+    then touch $HISTDIR sudo chmod 666 $HISTDIR
+fi
+
+# 定义Command日志的格式
+export HISTTIMEFORMAT="{\"TIME\":\"%F %T\",\"HOSTNAME\":\"$HOSTNAME\",\"LI\":\"$(who -u am i 2>/dev/null| awk '{print $NF}'|sed -e 's/[()]//g')\",\"LU\":\"$(who am i|awk '{print $1}')\",\"NU\":\"${USER}\",\"CMD\":\""
+
+# 输出日志到指定的log文件
+export PROMPT_COMMAND='history 1|tail -1|sed "s/^[ ]\+[0-9]\+ //"|sed "s/$/\"}/">> /software/command.log'
+COMMENT
 
 # 脚本和tar包在本地主机的存放路径
 local_base_path="/Users/ben/workspace_git/birdShell/elk/install"
