@@ -1,0 +1,4 @@
+# contents of ./patterns/postfix:
+FIREFOX_TIME [0-9]{13}
+JAVALOGMESSAGE (.*)
+BDPLOGMESSAGE %{DATA:startTimestamp}\|%{DATA:endTimestamp}\|%{INT:cost}\|%{DATA:userID}\|%{DATA:userName}\|%{DATA:module}\|%{DATA:op}\|%{DATA:status}\|%{DATA:message}\|%{DATA:target}\|%{DATA:targetDetail}\|

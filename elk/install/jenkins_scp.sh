@@ -93,7 +93,8 @@ do
     fi
 	exit
 EOF
-	scp -r $local_base_path/* $ssh_user@$ssh_host:$remote_base_path/
+	# 不需要每次都上传全部的文件，根据修改来上传
+	#scp -r $local_base_path/* $ssh_user@$ssh_host:$remote_base_path/
 	for install_component in ${install_component_arr[@]}
 	do
 		ssh -t -t $ssh_user@$ssh_host <<EOF

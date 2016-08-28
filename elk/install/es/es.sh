@@ -16,13 +16,13 @@ install_path=$1
 # es的版本和ik插件的版本
 es_ik_config_tar='ik.tar.gz'
 
-# 
-es_version='1.7.3'
-es_ik_version='1.4.1'
+# 已测试
+#es_version='1.7.3'
+#es_ik_version='1.4.1'
 
 # 已测试
-#es_version='2.3.5'
-#es_ik_version='1.9.5'
+es_version='2.3.5'
+es_ik_version='1.9.5'
 
 # 已测试
 #es_version='2.2.1'
