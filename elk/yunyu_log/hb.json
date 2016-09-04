@@ -1,0 +1,45 @@
+{
+  "mappings": {
+    "hb": {
+      "properties": {
+        "device_id": {
+          "type": "string",
+          "index": "not_analyzed"
+        },
+        "did": {
+          "type": "integer"
+        },
+        "duid": {
+          "type": "string",
+          "index": "not_analyzed"
+        },
+        "ip": {
+          "type": "string",
+          "index": "not_analyzed"
+        },
+        "name": {
+          "type": "string",
+          "index": "not_analyzed"
+        },
+        "request": {
+          "type": "string",
+          "index": "not_analyzed"
+        },
+        "server_timestamp": {
+          "type": "long"
+        },
+        "status": {
+          "type": "string",
+          "index": "not_analyzed"
+        },
+        "ua": {
+          "type": "string",
+          "index": "not_analyzed"
+        },
+        "uid": {
+          "type": "integer"
+        }
+      }
+    }
+  }
+}
