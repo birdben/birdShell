@@ -20,24 +20,28 @@ echo "执行脚本的目录是：$shell_path"
 es_ik_config_tar='ik.tar.gz'
 
 # 已测试
-es_version='1.7.3'
-es_ik_version='1.4.1'
-es_bigdesk_version='2.5.0'
+#es_version='1.7.3'
+#es_ik_version='1.4.1'
+#es_bigdesk_version='2.5.0'
+#es_kopf_version='v1.6.2'
 
 # 已测试
-#es_version='2.3.5'
-#es_ik_version='1.9.5'
-#es_bigdesk_version='master'
+es_version='2.3.5'
+es_ik_version='1.9.5'
+es_bigdesk_version='master'
+es_kopf_version='master'
 
 # 已测试
 #es_version='2.2.1'
 #es_ik_version='1.8.1'
 #es_bigdesk_version='v2.2.a'
+#es_kopf_version='v2.1.2'
 
 # 已测试
 #es_version='2.0.0'
 #es_ik_version='1.5.0'
 #es_bigdesk_version='v2.2.a'
+#es_kopf_version='v2.1.2'
 
 if [[ $es_version =~ 1.* ]]; then
   es_base_version='1.x'
@@ -52,6 +56,7 @@ fi
 es_skip_ik_plugin='no'
 es_skip_head_plugin='no'
 es_skip_bigdesk_plugin='no'
+es_skip_kopf_plugin='no'
 es_tar='elasticsearch-'${es_version}'.tar.gz'
 es_home=$install_path'/elasticsearch-'${es_version}
 es_config_file='elasticsearch.yml'
@@ -73,6 +78,17 @@ if [ $es_bigdesk_version == 'v2.2.a' ]; then
 fi
 if [ $es_bigdesk_version == 'master' ]; then
   es_install_bigdesk_plugin_cmd='cd '$shell_path' && cp '$es_base_version'/elasticsearch-bigdesk-'${es_bigdesk_version}'.zip '$install_path'/ && cd '$es_home' && ./bin/plugin install file://'$install_path'/elasticsearch-bigdesk-'${es_bigdesk_version}'.zip'
+fi
+
+# 安装kopf插件命令
+if [ $es_kopf_version == 'v1.6.2' ]; then
+  es_install_kopf_plugin_cmd='cd '$shell_path' && cp '$es_base_version'/elasticsearch-kopf-'${es_kopf_version}'.zip '$install_path'/ && cd '$es_home' && ./bin/plugin --install kopf --url file://'$install_path'/elasticsearch-kopf-'${es_kopf_version}'.zip'
+fi
+if [ $es_kopf_version == 'v2.1.2' ]; then
+  es_install_kopf_plugin_cmd='cd '$shell_path' && cp '$es_base_version'/elasticsearch-kopf-'${es_kopf_version}'.zip '$install_path'/ && cd '$es_home' && ./bin/plugin install file://'$install_path'/elasticsearch-kopf-'${es_kopf_version}'.zip'
+fi
+if [ $es_kopf_version == 'master' ]; then
+  es_install_kopf_plugin_cmd='cd '$shell_path' && cp '$es_base_version'/elasticsearch-kopf-'${es_kopf_version}'.zip '$install_path'/ && cd '$es_home' && ./bin/plugin install file://'$install_path'/elasticsearch-kopf-'${es_kopf_version}'.zip'
 fi
 
 # 安装ik插件命令
@@ -135,6 +151,19 @@ if [ ! -f $es_base_version/elasticsearch-bigdesk-${es_bigdesk_version}.zip ]; th
   fi
 fi
 
+if [ ! -f $es_base_version/elasticsearch-kopf-${es_bigdesk_version}.zip ]; then
+  echo "$es_base_version/elasticsearch-kopf-${es_kopf_version}.zip not found - downloading elasticsearch-kopf-${es_kopf_version}.zip..."
+  if [ $es_kopf_version = 'v1.6.2' ]; then
+    curl -o $es_base_version/'elasticsearch-kopf-'${es_kopf_version}'.zip' https://codeload.github.com/lmenezes/elasticsearch-kopf/zip/v1.6.2
+  fi
+  if [ $es_kopf_version = 'v2.1.2' ]; then
+    curl -o $es_base_version/'elasticsearch-kopf-'${es_kopf_version}'.zip' https://codeload.github.com/lmenezes/elasticsearch-kopf/zip/v2.1.2
+  fi
+  if [ $es_kopf_version = 'master' ]; then
+    curl -o $es_base_version/'elasticsearch-kopf-'${es_kopf_version}'.zip' https://codeload.github.com/lmenezes/elasticsearch-kopf/zip/master
+  fi
+fi
+
 if [ ! -f $es_base_version/elasticsearch-analysis-ik-${es_ik_version}.zip ]; then
   echo "$es_base_version/elasticsearch-analysis-ik-${es_ik_version}.jar not found - skip install elasticsearch-analysis-ik-${es_ik_version}.jar..."
   es_skip_ik_plugin='yes'
@@ -157,6 +186,11 @@ if [ $es_skip_bigdesk_plugin = 'no' ]; then
   # 安装bigdesk插件
   echo "running ${es_install_bigdesk_plugin_cmd}"
   eval ${es_install_bigdesk_plugin_cmd}
+fi
+if [ $es_skip_kopf_plugin = 'no' ]; then
+  # 安装kopf插件
+  echo "running ${es_install_kopf_plugin_cmd}"
+  eval ${es_install_kopf_plugin_cmd}
 fi
 sleep 5
 echo "running ${es_startup_cmd}"
