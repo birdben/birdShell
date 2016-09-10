@@ -151,7 +151,7 @@ if [ ! -f $es_base_version/elasticsearch-bigdesk-${es_bigdesk_version}.zip ]; th
   fi
 fi
 
-if [ ! -f $es_base_version/elasticsearch-kopf-${es_bigdesk_version}.zip ]; then
+if [ ! -f $es_base_version/elasticsearch-kopf-${es_kopf_version}.zip ]; then
   echo "$es_base_version/elasticsearch-kopf-${es_kopf_version}.zip not found - downloading elasticsearch-kopf-${es_kopf_version}.zip..."
   if [ $es_kopf_version = 'v1.6.2' ]; then
     curl -o $es_base_version/'elasticsearch-kopf-'${es_kopf_version}'.zip' https://codeload.github.com/lmenezes/elasticsearch-kopf/zip/v1.6.2
