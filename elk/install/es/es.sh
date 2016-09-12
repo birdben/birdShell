@@ -131,10 +131,10 @@ fi
 if [ ! -f $es_base_version/elasticsearch-head-${es_head_version}.zip ]; then
   echo "$es_base_version/elasticsearch-head-${es_head_version}.zip not found - downloading elasticsearch-head-${es_head_version}.zip..."
   if [ $es_head_version = '1.x' ]; then
-  	curl -o $es_base_version/'elasticsearch-head-'${es_head_version}'.zip' https://codeload.github.com/mobz/elasticsearch-head/zip/1.x
+  	curl -o $es_base_version/'elasticsearch-head-'${es_head_version}'.zip' https://codeload.github.com/mobz/elasticsearch-head/zip/${es_head_version}
   fi
   if [ $es_head_version = 'master' ]; then
-  	curl -o $es_base_version/'elasticsearch-head-'${es_head_version}'.zip' https://codeload.github.com/mobz/elasticsearch-head/zip/master
+  	curl -o $es_base_version/'elasticsearch-head-'${es_head_version}'.zip' https://codeload.github.com/mobz/elasticsearch-head/zip/${es_head_version}
   fi
 fi
 
@@ -144,23 +144,23 @@ if [ ! -f $es_base_version/elasticsearch-bigdesk-${es_bigdesk_version}.zip ]; th
     curl -o $es_base_version/'elasticsearch-bigdesk-'${es_bigdesk_version}'.zip' https://codeload.github.com/lukas-vlcek/bigdesk/zip/master
   fi
   if [ $es_bigdesk_version = 'v2.2.a' ]; then
-    curl -o $es_base_version/'elasticsearch-bigdesk-'${es_bigdesk_version}'.zip' https://codeload.github.com/hlstudio/bigdesk/zip/v2.2.a
+    curl -o $es_base_version/'elasticsearch-bigdesk-'${es_bigdesk_version}'.zip' https://codeload.github.com/hlstudio/bigdesk/zip/${es_bigdesk_version}
   fi
   if [ $es_bigdesk_version = 'master' ]; then
-    curl -o $es_base_version/'elasticsearch-bigdesk-'${es_bigdesk_version}'.zip' https://codeload.github.com/hlstudio/bigdesk/zip/master
+    curl -o $es_base_version/'elasticsearch-bigdesk-'${es_bigdesk_version}'.zip' https://codeload.github.com/hlstudio/bigdesk/zip/${es_bigdesk_version}
   fi
 fi
 
-if [ ! -f $es_base_version/elasticsearch-kopf-${es_bigdesk_version}.zip ]; then
+if [ ! -f $es_base_version/elasticsearch-kopf-${es_kopf_version}.zip ]; then
   echo "$es_base_version/elasticsearch-kopf-${es_kopf_version}.zip not found - downloading elasticsearch-kopf-${es_kopf_version}.zip..."
   if [ $es_kopf_version = 'v1.6.2' ]; then
-    curl -o $es_base_version/'elasticsearch-kopf-'${es_kopf_version}'.zip' https://codeload.github.com/lmenezes/elasticsearch-kopf/zip/v1.6.2
+    curl -o $es_base_version/'elasticsearch-kopf-'${es_kopf_version}'.zip' https://codeload.github.com/lmenezes/elasticsearch-kopf/zip/${es_kopf_version}
   fi
   if [ $es_kopf_version = 'v2.1.2' ]; then
-    curl -o $es_base_version/'elasticsearch-kopf-'${es_kopf_version}'.zip' https://codeload.github.com/lmenezes/elasticsearch-kopf/zip/v2.1.2
+    curl -o $es_base_version/'elasticsearch-kopf-'${es_kopf_version}'.zip' https://codeload.github.com/lmenezes/elasticsearch-kopf/zip/${es_kopf_version}
   fi
   if [ $es_kopf_version = 'master' ]; then
-    curl -o $es_base_version/'elasticsearch-kopf-'${es_kopf_version}'.zip' https://codeload.github.com/lmenezes/elasticsearch-kopf/zip/master
+    curl -o $es_base_version/'elasticsearch-kopf-'${es_kopf_version}'.zip' https://codeload.github.com/lmenezes/elasticsearch-kopf/zip/${es_kopf_version}
   fi
 fi
 
