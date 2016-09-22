@@ -9,7 +9,7 @@
 $ ./bin/flume-ng agent --conf ./conf/ -f conf/flume_hb.conf -Dflume.root.logger=DEBUG,console -n agentX
 ```
 
-#### 启动Flume采集端，发送数据到Agent测试
+#### 启动Flume采集端，发送数据到Collector测试
 
 ```
 $ ./bin/flume-ng agent --conf ./conf/ -f conf/flume_hb_file.conf -Dflume.root.logger=DEBUG,console -n agent1
