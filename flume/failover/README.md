@@ -6,9 +6,9 @@
 
 ```
 # 启动采集端，AgentX
-$ ./bin/flume-ng agent --conf ./conf/ -f conf/flume_failover.conf -Dflume.root.logger=DEBUG,console -n agentX
+$ ./bin/flume-ng agent --conf ./conf/ -f conf/flume_failover_agent.conf -Dflume.root.logger=DEBUG,console -n agentX
 
-# 启动2个Collect端，Agent1和Agent2
-$ ./bin/flume-ng agent --conf ./conf/ -f conf/flume_failover_agent1.conf -Dflume.root.logger=DEBUG,console -n agent1
-$ ./bin/flume-ng agent --conf ./conf/ -f conf/flume_failover_agent2.conf -Dflume.root.logger=DEBUG,console -n agent2
+# 启动2个Collect端，Collector1和Collector2
+$ ./bin/flume-ng agent --conf ./conf/ -f conf/flume_failover_collector1.conf -Dflume.root.logger=DEBUG,console -n agent1
+$ ./bin/flume-ng agent --conf ./conf/ -f conf/flume_failover_collector2.conf -Dflume.root.logger=DEBUG,console -n agent2
 ```
