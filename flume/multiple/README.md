@@ -6,7 +6,7 @@
 
 ```
 # 最好先启动汇总节点的Agent
-$ ./bin/flume-ng agent --conf ./conf/ -f conf/flume_collect.conf -Dflume.root.logger=DEBUG,console -n agentX
+$ ./bin/flume-ng agent --conf ./conf/ -f conf/flume_collector.conf -Dflume.root.logger=DEBUG,console -n agentX
 $ ./bin/flume-ng agent --conf ./conf/ -f conf/flume.conf -Dflume.root.logger=DEBUG,console -n agent1
 $ ./bin/flume-ng agent --conf ./conf/ -f conf/flume.conf -Dflume.root.logger=DEBUG,console -n agent2
 $ ./bin/flume-ng agent --conf ./conf/ -f conf/flume.conf -Dflume.root.logger=DEBUG,console -n agent3
