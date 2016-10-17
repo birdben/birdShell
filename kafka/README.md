@@ -58,3 +58,53 @@ broker.id=1
 ```
 $ ./bin/kafka-server-start.sh config/server.properties &
 ```
+
+
+## 使用单节点Kafka
+```
+# 创建Topic test1
+$ ./bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic test1
+Created topic "test1".
+
+# 查看我们所有的Topic，可以看到test1
+$ ./bin/kafka-topics.sh --list --zookeeper localhost:2181
+__consumer_offsets
+connect-test
+kafka_test
+my-replicated-topic
+streams-file-input
+test1
+
+# 启动producer服务，向test1的Topic中发送消息
+$ ./bin/kafka-console-producer.sh --broker-list localhost:9092 --topic test1
+this is a message
+this is another message
+still a message
+
+# 启动consumer服务，从test1的Topic中接收消息
+$ ./bin/kafka-console-consumer.sh --zookeeper localhost:2181 --topic test1 --from-beginning
+this is a message
+this is another message
+still a message
+```
+
+## 使用集群Kafka
+```
+# 创建新的Topic kafka_cluster_topic
+$ ./bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 3 --partitions 1 --topic kafka_cluster_topic
+
+# 查看Topic kafka_cluster_topic的状态，发现Leader是1（broker.id=1）,有三个备份分别是0，1，2
+$ ./bin/kafka-topics.sh --describe --zookeeper localhost:2181 --topic kafka_cluster_topic
+Topic:kafka_cluster_topic   PartitionCount:1    ReplicationFactor:3 Configs:
+    Topic: kafka_cluster_topic  Partition: 0    Leader: 1   Replicas: 1,0,2 Isr: 1,0,2
+
+# 启动producer服务，向kafka_cluster_topic的Topic中发送消息
+$ ./bin/kafka-console-producer.sh --broker-list localhost:9092 --topic kafka_cluster_topic
+this is a message
+my name is birdben
+
+# 启动consumer服务，从kafka_cluster_topic的Topic中接收消息
+$ ./bin/kafka-console-consumer.sh --zookeeper localhost:2181 --topic kafka_cluster_topic --from-beginning
+this is a message
+my name is birdben
+```
