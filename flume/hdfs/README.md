@@ -19,3 +19,14 @@ $ ./agent_startup.sh
 $ chmod +x collector_startup.sh
 $ ./collector_startup.sh
 ```
+
+### 需要依赖Hadoop的jar包
+```
+cp ~/Downloads/develop/hadoop-2.7.1/share/hadoop/common/hadoop-common-2.7.1.jar ~/dev/flume-1.6.0/lib
+cp ~/Downloads/develop/hadoop-2.7.1/share/hadoop/common/lib/commons-configuration-1.6.jar ~/dev/flume-1.6.0/lib
+cp ~/Downloads/develop/hadoop-2.7.1/share/hadoop/common/lib/hadoop-auth-2.7.1.jar ~/dev/flume-1.6.0/lib
+cp ~/Downloads/develop/hadoop-2.7.1/share/hadoop/httpfs/tomcat/webapps/webhdfs/WEB-INF/lib/hadoop-hdfs-2.7.1.jar ~/dev/flume-1.6.0/lib
+cp ~/Downloads/develop/hadoop-2.7.1/share/hadoop/hdfs/lib/htrace-core-3.1.0-incubating.jar ~/dev/flume-1.6.0/lib
+# 覆盖已有的commons-io.jar
+cp ~/Downloads/develop/hadoop-2.7.1/share/hadoop/common/lib/commons-io-2.4.jar ~/dev/flume-1.6.0/lib
+```
