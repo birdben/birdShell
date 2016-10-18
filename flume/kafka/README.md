@@ -1,0 +1,48 @@
+### 启动Flume收集端
+```
+$ ./bin/flume-ng agent --conf ./conf/ -f conf/flume_collector_kafka.conf -Dflume.root.logger=DEBUG,console -n agentX
+```
+
+### 启动Flume采集端，发送数据到Collector测试
+```
+$ ./bin/flume-ng agent --conf ./conf/ -f conf/flume_agent_file.conf -Dflume.root.logger=DEBUG,console -n agentX
+```
+
+### 后台启动Flume收集端
+``` 
+$ chmod +x agent_startup.sh
+$ ./agent_startup.sh
+```
+
+### 后台启动Flume采集端
+```
+$ chmod +x collector_startup.sh
+$ ./collector_startup.sh
+```
+
+### Flume配置文件
+
+```
+agentX.sources = flume-avro-sink
+agentX.channels = chX
+agentX.sinks = flume-kafka-sink
+
+agentX.sources.flume-avro-sink.channels = chX
+agentX.sources.flume-avro-sink.type = avro
+agentX.sources.flume-avro-sink.bind = hadoop1
+agentX.sources.flume-avro-sink.port = 41414
+agentX.sources.flume-avro-sink.threads = 8
+
+
+agentX.channels.chX.type = memory
+agentX.channels.chX.capacity = 10000
+agentX.channels.chX.transactionCapacity = 100
+
+
+agentX.sinks.flume-kafka-sink.type = org.apache.flume.sink.kafka.KafkaSink
+agentX.sinks.flume-kafka-sink.topic = kafka_cluster_topic
+agentX.sinks.flume-kafka-sink.brokerList = hadoop1:9092,hadoop2:9092,hadoop3:9092
+agentX.sinks.flume-kafka-sink.requiredAcks = 1
+agentX.sinks.flume-kafka-sink.batchSize = 20
+agentX.sinks.flume-kafka-sink.channel = chX
+```

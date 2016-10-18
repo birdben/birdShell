@@ -1,0 +1,22 @@
+### API日志
+
+{"logs":[{"name":"birdben.api.call","request":"POST /api/message/receive","status":"succeeded","bid":"59885256139866115","uid":"","did":"1265","duid":"dxf536","hb_uid":"59885256030814209","ua":"Dalvik/1.6.0 (Linux; U; Android 4.4.4; YQ601 Build/KTU84P)","device_id":"fa48a076-f35f-3217-8575-5fc1f02f1ac0","ip":"::ffff:10.10.1.242","server_timestamp":1475912702996}],"level":"info","message":"logs","timestamp":"2016-10-08T07:45:02.996Z"}
+{"logs":[{"name":"birdben.api.call","request":"GET /api/message/ad-detail","status":"succeeded","bid":"59885256139866115","uid":"","did":"1265","duid":"dxf536","hb_uid":"59885256030814209","ua":"Dalvik/1.6.0 (Linux; U; Android 4.4.4; YQ601 Build/KTU84P)","device_id":"fa48a076-f35f-3217-8575-5fc1f02f1ac0","ip":"::ffff:10.10.1.242","server_timestamp":1475912787476}],"level":"info","message":"logs","timestamp":"2016-10-08T07:46:27.476Z"}
+
+### 打开App日志
+
+{"logs":[{"timestamp":"1475914816071","rpid":"63152468644593670","name":"birdben.ad.open_hb","bid":0,"uid":0,"did":0,"duid":0,"hb_uid":0,"ua":"","device_id":"","server_timestamp":1475914829286}],"level":"info","message":"logs","timestamp":"2016-10-08T08:20:29.286Z"}
+{"logs":[{"timestamp":"1475914827206","rpid":"63152468644593670","name":"birdben.ad.open_hb","bid":0,"uid":0,"did":0,"duid":0,"hb_uid":0,"ua":"","device_id":"","server_timestamp":1475914840425}],"level":"info","message":"logs","timestamp":"2016-10-08T08:20:40.425Z"}
+{"logs":[{"timestamp":"1475915077351","rpid":"63152468644593666","name":"birdben.ad.open_hb","bid":0,"uid":0,"did":0,"duid":0,"hb_uid":0,"ua":"","device_id":"","server_timestamp":1475915090579}],"level":"info","message":"logs","timestamp":"2016-10-08T08:24:50.579Z"}
+
+### 加载页面日志
+
+{"logs":[{"timestamp":"1475914816133","rpid":"63152468644593670","name":"birdben.ad.view_ad","bid":0,"uid":0,"did":0,"duid":0,"hb_uid":0,"ua":"","device_id":"","server_timestamp":1475914829332}],"level":"info","message":"logs","timestamp":"2016-10-08T08:20:29.332Z"}
+{"logs":[{"timestamp":"1475914827284","rpid":"63152468644593670","name":"birdben.ad.view_ad","bid":0,"uid":0,"did":0,"duid":0,"hb_uid":0,"ua":"","device_id":"","server_timestamp":1475914840498}],"level":"info","message":"logs","timestamp":"2016-10-08T08:20:40.499Z"}
+{"logs":[{"timestamp":"1475915077585","rpid":"63152468644593666","name":"birdben.ad.view_ad","bid":0,"uid":0,"did":0,"duid":0,"hb_uid":0,"ua":"","device_id":"","server_timestamp":1475915090789}],"level":"info","message":"logs","timestamp":"2016-10-08T08:24:50.789Z"}
+
+### 点击链接日志
+
+{"logs":[{"timestamp":"1475912701768","rpid":"63146996042563584","name":"birdben.ad.click_ad","bid":0,"uid":0,"did":0,"duid":0,"hb_uid":0,"ua":"","device_id":"","server_timestamp":1475912715001}],"level":"info","message":"logs","timestamp":"2016-10-08T07:45:15.001Z"}
+{"logs":[{"timestamp":"1475913832349","rpid":"63148812297830402","name":"birdben.ad.click_ad","bid":0,"uid":0,"did":0,"duid":0,"hb_uid":0,"ua":"","device_id":"","server_timestamp":1475913845544}],"level":"info","message":"logs","timestamp":"2016-10-08T08:04:05.544Z"}
+{"logs":[{"timestamp":"1475915080561","rpid":"63152468644593666","name":"birdben.ad.click_ad","bid":0,"uid":0,"did":0,"duid":0,"hb_uid":0,"ua":"","device_id":"","server_timestamp":1475915093792}],"level":"info","message":"logs","timestamp":"2016-10-08T08:24:53.792Z"}
