@@ -1,0 +1,2 @@
+API_LOGS %{DATA:name},%{DATA:request},%{DATA:status},%{DATA:bid},%{DATA:uid},%{DATA:did},%{DATA:duid},%{DATA:hb_uid},%{DATA:ua},%{DATA:device_id},%{DATA:ip},%{DATA:server_timestamp}
+MATCH_ALL (.*)
