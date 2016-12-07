@@ -1,0 +1,2 @@
+#!/bin/bash
+nohup ${FLUME_HOME}/bin/flume-ng agent --conf ${FLUME_HOME}/conf/ -f ${FLUME_HOME}/conf/flume_collector1.conf -Dflume.root.logger=DEBUG,console -n agentX 1>${FLUME_HOME}/logs/flume.log 2>&1 &

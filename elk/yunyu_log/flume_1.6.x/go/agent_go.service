@@ -1,0 +1,2 @@
+#!/bin/bash
+nohup ${FLUME_HOME}/bin/flume-ng agent --conf ${FLUME_HOME}/conf/ -f ${FLUME_HOME}/conf/flume_agent_go.conf -Dflume.root.logger=DEBUG,console -n agentGo 1>${FLUME_HOME}/logs/agent_go.log 2>&1 &
