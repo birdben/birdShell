@@ -1,0 +1,9 @@
+Log file created at: 2016/11/23 20:34:49
+Running on machine: soho
+Binary: Built with gc go1.6 for linux/amd64
+Log line format: [IWEF]mmdd hh:mm:ss.uuuuuu threadid file:line] msg
+I1123 20:34:49.558131    1669 config.go:176] Load Config file = /home/yunyu/project/conf/million.yaml
+I1123 20:34:49.561628    1669 handler.go:48] connect to database success
+I1123 20:34:49.561695    1669 handler.go:62] success to init myRand for Handler&{0xc82001d500}
+I1124 16:16:05.562937    1669 pushHandler.go:56] Pushed a message, id:XXXXXX
+I1124 16:16:05.563599    1669 pushHandler.go:66] @PushMessage, id.XXXX.Valid is false

@@ -1,0 +1,7 @@
+::1 [16/Jun/2016:09:05:22 +0800] "GET /api/login HTTP/1.1" 200 - "http://121.42.52.69:3005/app/mock" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.86 Safari/537.36" -
+::1 [16/Jun/2016:09:05:41 +0800] "GET /api/login?partner=demo&user_id=admin&mobile=1111111&channel=1a2b3c&timestamp=1466039122&sign=222222222222222222222 HTTP/1.1" 302 46 "http://121.42.52.69:3005/app/mock" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.86 Safari/537.36" -
+::1 [16/Jun/2016:10:42:57 +0800] "POST /api/test HTTP/1.1" 200 412 "-" "Dalvik/1.6.0 (Linux; U; Android 4.4.2; vivo Xplay3S Build/KVT49L)" 111111111111
+::1 [16/Jun/2016:10:42:58 +0800] "GET /api/settings HTTP/1.1" 200 - "-" "Dalvik/1.6.0 (Linux; U; Android 4.4.2; vivo Xplay3S Build/KVT49L)" 111111111111
+::1 [16/Jun/2016:14:29:03 +0800] "GET / HTTP/1.0" 302 26 "-" "-" -
+::1 [16/Jun/2016:14:29:03 +0800] "GET / HTTP/1.1" 302 26 "-" "-" -
+::1 [16/Jun/2016:14:31:32 +0800] "HEAD /09 HTTP/1.1" 302 32 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2269.0 Safari/537.36 webbat-util 638 TenXcan/1.0.602" -
