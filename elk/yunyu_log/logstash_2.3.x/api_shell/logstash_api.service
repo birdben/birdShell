@@ -1,1 +1,0 @@
-nohup logstash -f ${LOGSTASH_HOME}/conf/logstash_api.conf 2>${LOGSTASH_HOME}/logs/logstash_api.log 1>${LOGSTASH_HOME}/logs/logstash_api.log &
