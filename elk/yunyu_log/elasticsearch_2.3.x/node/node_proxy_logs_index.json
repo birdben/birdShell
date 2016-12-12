@@ -1,0 +1,119 @@
+{
+  "mappings": {
+    "_default_": {
+      "_all": {
+        "enabled": true
+      },
+      "dynamic_templates": [
+        {
+          "my_template": {
+            "match_mapping_type": "string",
+            "mapping": {
+              "type": "string",
+              "fields": {
+                "raw": {
+                  "type": "string",
+                  "index": "not_analyzed"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "node_proxy": {
+      "properties": {
+        "api": {
+          "type": "string",
+          "fields": {
+            "raw": {
+              "type": "string",
+              "index": "not_analyzed"
+            }
+          }
+        },
+        "bid": {
+          "type": "string",
+          "index": "not_analyzed"
+        },
+        "dealer_code": {
+          "type": "string",
+          "index": "not_analyzed"
+        },
+        "dealer_id": {
+          "type": "string",
+          "index": "not_analyzed"
+        },
+        "device-id": {
+          "type": "string",
+          "index": "not_analyzed"
+        },
+        "duid": {
+          "type": "string",
+          "index": "not_analyzed"
+        },
+        "hb_uid": {
+          "type": "long",
+          "fields": {
+            "as_string": {
+              "type": "string",
+              "index": "not_analyzed"
+            }
+          }
+        },
+        "host": {
+          "type": "string",
+          "index": "not_analyzed"
+        },
+        "level": {
+          "type": "string",
+          "index": "not_analyzed"
+        },
+        "message": {
+          "type": "string"
+        },
+        "request-id": {
+          "type": "string",
+          "index": "not_analyzed"
+        },
+        "target": {
+          "type": "string",
+          "index": "not_analyzed"
+        },
+        "timestamp": {
+          "format": "strict_date_optional_time||epoch_millis",
+          "type": "date"
+        },
+        "uid": {
+          "type": "string",
+          "index": "not_analyzed"
+        },
+        "version": {
+          "type": "string",
+          "index": "not_analyzed"
+        },
+        "path": {
+          "type": "string",
+          "fields": {
+            "raw": {
+              "type": "string",
+              "index": "not_analyzed"
+            }
+          }
+        },
+        "type": {
+          "type": "string",
+          "index": "not_analyzed"
+        },
+        "@timestamp": {
+          "format": "strict_date_optional_time||epoch_millis",
+          "type": "date"
+        },
+        "@version": {
+          "type": "string",
+          "index": "not_analyzed"
+        }
+      }
+    }
+  }
+}
