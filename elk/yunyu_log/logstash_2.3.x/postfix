@@ -1,6 +1,7 @@
 API_LOGS %{DATA:name},%{DATA:request},%{DATA:status},%{DATA:bid},%{DATA:uid},%{DATA:did},%{DATA:duid},%{DATA:hb_uid},%{DATA:ua},%{DATA:device_id},%{DATA:ip},%{DATA:server_timestamp}
 MATCH_ALL (.*)
-GO_LOGS %{GO_INFO:info}%{GO_TIMESTAMP:timestamp}%{DATA:sss}    %{DATA:threadid} %{DATA:file}:%{DATA:line}] %{GO_LOGMSG:msg}
+GO_LOGS %{GO_INFO:info}%{GO_TIMESTAMP:timestamp}%{DATA:sss}%{GO_SPACE:space}%{DATA:threadid} %{DATA:file}:%{DATA:line}] %{GO_LOGMSG:msg}
 GO_INFO [IWEF]
+GO_SPACE (\s+)
 GO_TIMESTAMP (0\d{1}|1[0-2])(0\d{1}|[12]\d{1}|3[01]) (0\d{1}|1\d{1}|2[0-3]):[0-5]\d{1}:([0-5]\d{1}).\d{3}
 GO_LOGMSG (.*)
