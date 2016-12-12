@@ -1,0 +1,4 @@
+#!/bin/bash
+# Kibana Issue : https://github.com/elastic/kibana/issues/5170
+export NODE_OPTIONS="${NODE_OPTIONS:=--max-old-space-size=200}"
+nohup kibana 2>${KIBANA_HOME}/logs/kibana.log 1>${KIBANA_HOME}/logs/kibana.log &
