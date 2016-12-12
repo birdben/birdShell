@@ -1,0 +1,3 @@
+#!/bin/bash
+export ES_HEAP_SIZE="-Xmx512m -Xms512m"
+elasticsearch -d
