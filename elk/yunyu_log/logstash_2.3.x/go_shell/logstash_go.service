@@ -1,3 +1,0 @@
-#!/bin/bash
-export LS_JAVA_OPTS="-Xmx512m -Xms512m"
-nohup logstash -f ${LOGSTASH_HOME}/conf/logstash_go.conf 2>${LOGSTASH_HOME}/logs/logstash_go.log 1>${LOGSTASH_HOME}/logs/logstash_go.log &

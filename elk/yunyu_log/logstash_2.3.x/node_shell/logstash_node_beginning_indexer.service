@@ -1,0 +1,123 @@
+#!/bin/bash
+export LS_JAVA_OPTS="-Xmx512m -Xms512m"
+
+RETVAL=0
+SYS_USER="elk"
+SYS_USER_ID="501"
+
+LS_NAME="logstash_node_beginning"
+LS_DESC="Logstash 2.3.4 Indexer logstash_node_begining"
+LS_PID_FOLDER="/var/run/logstash"
+LS_PID_FILE="${LS_PID_FOLDER}/${LS_NAME}.pid"
+LS_LOG_FOLDER="${LS_HOME}/logs/node_indexer"
+LS_CONF_FOLDER="${LS_HOME}/conf/node_indexer"
+
+# 限制启动用户
+if [ `id -u` -ne "${SYS_USER_ID}" ]; then
+    echo "You need ${SYS_USER} privileges to run this script"
+    exit 1
+fi
+
+# 判断是否指定了配置文件
+#if [ ! -n "$2" ]; then
+#    echo "You need provide the config file path to run this script"
+#    exit 1
+#fi
+
+# 检查配置文件是否存在
+if [ ! -f "${LS_CONF_FOLDER}/${LS_NAME}.conf" ]; then
+    echo "Your config file is not exists, please check the script and run again."
+    exit 1
+fi
+
+start() {
+    status
+    RETVAL=$?
+    if [ $RETVAL -eq 0 ]; then
+        echo "${LS_NAME} is already running"
+        exit $RETVAL
+    fi
+
+    echo "Starting ${LS_DESC} : "
+    if [ ! -d "${LS_PID_FOLDER}" ] ; then
+        mkdir -p ${LS_PID_FOLDER}
+    fi
+    if [ ! -d "${LS_LOG_FOLDER}" ] ; then
+        mkdir -p ${LS_LOG_FOLDER}
+    fi
+
+    cd ${LS_HOME}/bin
+    nohup logstash -f ${LS_CONF_FOLDER}/${LS_NAME}.conf 1>${LS_LOG_FOLDER}/${LS_NAME}.out 2>${LS_LOG_FOLDER}/${LS_NAME}.err &
+    echo $! > ${LS_PID_FILE}
+    sleep 1
+    PID=`cat "${LS_PID_FILE}"`
+    echo "${LS_NAME} started. PID:$PID" 
+    return 0 
+}
+
+stop() {
+    echo "Stopping ${LS_DESC} : "
+    if status ; then
+    PID=`cat "${LS_PID_FILE}"`
+    echo "Killing ${LS_NAME} (PID:$PID) with SIGTERM"
+    kill -TERM $PID >/dev/null 2>&1
+    sleep 1
+    if status && sleep 1 ; then
+        echo "${LS_NAME} stop failed; still running. Will force kill ${LS_NAME}"
+        kill -KILL $PID >/dev/null 2>&1
+        sleep 1
+        if status && sleep 1 ; then
+        	echo "${LS_NAME} stop failed; still running." 
+        else
+            echo "${LS_NAME} stopped."
+            rm -f ${LS_PID_FILE}
+        fi
+    else
+        echo "${LS_NAME} stopped."
+        rm -f ${LS_PID_FILE}
+    fi
+  fi
+}
+
+status() {
+    if [ -f "${LS_PID_FILE}" ] ; then
+        PID=`cat "${LS_PID_FILE}"`
+        if kill -0 $PID > /dev/null 2> /dev/null ; then
+            return 0
+        else
+        	# program is dead but pid file exists
+            return 2
+        fi
+    else
+    	# program is not running
+        return 3
+    fi
+}
+
+case "$1" in
+    start)
+        start
+        ;;
+    stop)
+        stop
+        ;;
+    status)
+        status
+        RETVAL=$?
+        if [ $RETVAL -eq 0 ] ; then
+            PID=`cat "${LS_PID_FILE}"`
+            echo "${LS_NAME} is running. PID:$PID"
+        else
+            echo "${LS_NAME} is not running"
+        fi
+        exit $RETVAL
+        ;;
+    restart)
+        stop && start
+        ;;
+    *)
+        # Invalid Arguments, print the following message.
+        echo "Usage: $0 {start|stop|status|restart}" >&2
+        exit 2
+        ;;
+esac

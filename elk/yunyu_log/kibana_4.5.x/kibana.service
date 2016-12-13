@@ -1,4 +1,111 @@
 #!/bin/bash
 # Kibana Issue : https://github.com/elastic/kibana/issues/5170
 export NODE_OPTIONS="${NODE_OPTIONS:=--max-old-space-size=200}"
-nohup kibana 2>${KIBANA_HOME}/logs/kibana.log 1>${KIBANA_HOME}/logs/kibana.log &
+
+RETVAL=0
+SYS_USER="elk"
+SYS_USER_ID="501"
+
+KB_NAME="kibana"
+KB_DESC="Kibana 4.5.4"
+KB_PID_FOLDER="/var/run/kibana"
+KB_PID_FILE="${KB_PID_FOLDER}/${KB_NAME}.pid"
+KB_LOG_FOLDER="${KB_HOME}/logs"
+
+# 限制启动用户
+if [ `id -u` -ne "${SYS_USER_ID}" ]; then
+    echo "You need ${SYS_USER} privileges to run this script"
+    exit 1
+fi
+
+start() {
+    status
+    RETVAL=$?
+    if [ $RETVAL -eq 0 ]; then
+        echo "${KB_NAME} is already running"
+        exit $RETVAL
+    fi
+
+    echo "Starting ${KB_DESC} : "
+    if [ ! -d "${KB_PID_FOLDER}" ] ; then
+        mkdir -p ${KB_PID_FOLDER}
+    fi
+    if [ ! -d "${KB_LOG_FOLDER}" ] ; then
+        mkdir -p ${KB_LOG_FOLDER}
+    fi
+
+    cd ${KB_HOME}/bin
+    nohup kibana 1>${KB_LOG_FOLDER}/${KB_NAME}.out 2>${KB_LOG_FOLDER}/${KB_NAME}.err &
+    echo $! > ${KB_PID_FILE}
+    sleep 1
+    PID=`cat "${KB_PID_FILE}"`
+    echo "${KB_NAME} started. PID:$PID" 
+    return 0 
+}
+
+stop() {
+    echo "Stopping ${KB_DESC} : "
+    if status ; then
+    PID=`cat "${KB_PID_FILE}"`
+    echo "Killing ${KB_NAME} (PID:$PID) with SIGTERM"
+    kill -TERM $PID >/dev/null 2>&1
+    usleep 100000
+    if status && sleep 1 ; then
+        echo "${KB_NAME} stop failed; still running. Will force kill ${KB_NAME}"
+        kill -KILL $PID >/dev/null 2>&1
+        usleep 100000
+        if status && sleep 1 ; then
+        	echo "${KB_NAME} stop failed; still running." 
+        else
+            echo "${KB_NAME} stopped."
+            rm -f ${KB_PID_FILE}
+        fi
+    else
+        echo "${KB_NAME} stopped."
+        rm -f ${KB_PID_FILE}
+    fi
+  fi
+}
+
+status() {
+    if [ -f "${KB_PID_FILE}" ] ; then
+        PID=`cat "${KB_PID_FILE}"`
+        if kill -0 $PID > /dev/null 2> /dev/null ; then
+            return 0
+        else
+        	# program is dead but pid file exists
+            return 2
+        fi
+    else
+    	# program is not running
+        return 3
+    fi
+}
+
+case "$1" in
+    start)
+        start
+        ;;
+    stop)
+        stop
+        ;;
+    status)
+        status
+        RETVAL=$?
+        if [ $RETVAL -eq 0 ] ; then
+            PID=`cat "${KB_PID_FILE}"`
+            echo "${KB_NAME} is running. PID:$PID"
+        else
+            echo "${KB_NAME} is not running"
+        fi
+        exit $RETVAL
+        ;;
+    restart)
+        stop && start
+        ;;
+    *)
+        # Invalid Arguments, print the following message.
+        echo "Usage: $0 {start|stop|status|restart}" >&2
+        exit 2
+        ;;
+esac
