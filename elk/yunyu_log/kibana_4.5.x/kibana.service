@@ -36,8 +36,7 @@ start() {
 
     cd ${KB_HOME}/bin
     nohup kibana 1>${KB_LOG_FOLDER}/${KB_NAME}.out 2>${KB_LOG_FOLDER}/${KB_NAME}.err &
-    echo $! > ${KB_PID_FILE}
-    sleep 1
+    sleep 3
     PID=`cat "${KB_PID_FILE}"`
     echo "${KB_NAME} started. PID:$PID" 
     return 0 
@@ -49,11 +48,11 @@ stop() {
     PID=`cat "${KB_PID_FILE}"`
     echo "Killing ${KB_NAME} (PID:$PID) with SIGTERM"
     kill -TERM $PID >/dev/null 2>&1
-    usleep 100000
+    sleep 1
     if status && sleep 1 ; then
         echo "${KB_NAME} stop failed; still running. Will force kill ${KB_NAME}"
         kill -KILL $PID >/dev/null 2>&1
-        usleep 100000
+        sleep 1
         if status && sleep 1 ; then
         	echo "${KB_NAME} stop failed; still running." 
         else

@@ -49,7 +49,7 @@ start() {
     cd ${LS_HOME}/bin
     nohup logstash -f ${LS_CONF_FOLDER}/${LS_NAME}.conf 1>${LS_LOG_FOLDER}/${LS_NAME}.out 2>${LS_LOG_FOLDER}/${LS_NAME}.err &
     echo $! > ${LS_PID_FILE}
-    sleep 1
+    sleep 3
     PID=`cat "${LS_PID_FILE}"`
     echo "${LS_NAME} started. PID:$PID" 
     return 0 

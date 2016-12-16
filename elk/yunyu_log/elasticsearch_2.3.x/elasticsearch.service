@@ -35,7 +35,7 @@ start() {
 
     cd ${ES_HOME}/bin
     elasticsearch -p ${ES_PID_FILE} -d
-    sleep 1
+    sleep 3
     PID=`cat "${ES_PID_FILE}"`
     echo "${ES_NAME} started. PID:$PID" 
     return 0 
@@ -47,11 +47,11 @@ stop() {
     PID=`cat "${ES_PID_FILE}"`
     echo "Killing ${ES_NAME} (PID:$PID) with SIGTERM"
     kill -TERM $PID >/dev/null 2>&1
-    usleep 100000
+    sleep 1
     if status && sleep 1 ; then
         echo "${ES_NAME} stop failed; still running. Will force kill ${ES_NAME}"
         kill -KILL $PID >/dev/null 2>&1
-        usleep 100000
+        sleep 1
         if status && sleep 1 ; then
         	echo "${ES_NAME} stop failed; still running." 
         else
