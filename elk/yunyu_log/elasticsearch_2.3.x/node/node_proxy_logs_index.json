@@ -25,6 +25,8 @@
       "properties": {
         "api": {
           "type": "string",
+          "analyzer": "ik",
+          "search_analyzer": "ik_smart",
           "fields": {
             "raw": {
               "type": "string",
@@ -70,7 +72,9 @@
           "index": "not_analyzed"
         },
         "message": {
-          "type": "string"
+          "type": "string",
+          "analyzer": "ik",
+          "search_analyzer": "ik_smart"
         },
         "request-id": {
           "type": "string",
@@ -94,12 +98,7 @@
         },
         "path": {
           "type": "string",
-          "fields": {
-            "raw": {
-              "type": "string",
-              "index": "not_analyzed"
-            }
-          }
+          "index": "not_analyzed"
         },
         "type": {
           "type": "string",

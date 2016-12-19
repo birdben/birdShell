@@ -28,7 +28,9 @@
           "index": "not_analyzed"
         },
         "msg": {
-          "type": "string"
+          "type": "string",
+          "analyzer": "ik",
+          "search_analyzer": "ik_smart"
         },
         "file": {
           "type": "string",
@@ -67,7 +69,9 @@
           "index": "not_analyzed"
         },
         "msg": {
-          "type": "string"
+          "type": "string",
+          "analyzer": "ik",
+          "search_analyzer": "ik_smart"
         },
         "file": {
           "type": "string",
