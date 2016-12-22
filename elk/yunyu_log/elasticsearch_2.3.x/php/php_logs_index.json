@@ -22,7 +22,9 @@
       ],
       "properties": {
         "msg": {
-          "type": "string"
+          "type": "string",
+          "analyzer": "ik",
+          "search_analyzer": "ik_smart"
         },
         "host": {
           "type": "string",
