@@ -47,7 +47,9 @@ start() {
     fi
 
     cd ${LS_HOME}/bin
-    nohup logstash -f ${LS_CONF_FOLDER}/${LS_NAME}.conf 1>${LS_LOG_FOLDER}/${LS_NAME}.out 2>${LS_LOG_FOLDER}/${LS_NAME}.err &
+    # 这里只有启动Logstash进程才会创建log日志文件，删除log日志文件之后不重启Logstash进程是不会重新创建日志文件的
+    # 日志输出使用>>追加日志内容，不要使用>，否则在按天做日志切分的时候，cat /dev/null > logstash.out清空日志文件内容后，ls和du查看日志文件大小不一致
+    nohup logstash -f ${LS_CONF_FOLDER}/${LS_NAME}.conf 1>>${LS_LOG_FOLDER}/${LS_NAME}.out 2>>${LS_LOG_FOLDER}/${LS_NAME}.err &
     echo $! > ${LS_PID_FILE}
     sleep 3
     PID=`cat "${LS_PID_FILE}"`
