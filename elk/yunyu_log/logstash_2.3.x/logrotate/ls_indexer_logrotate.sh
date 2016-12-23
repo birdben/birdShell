@@ -34,15 +34,15 @@ YESTERDAY_DT=`date -d "yesterday" +%F`
 
 # 定义logstash go日志目录
 OLD_LS_GO_LOGS="/data/logstash_logs/go_indexer/"
-NEW_LS_GO_LOGS="/data/logbak/logstash_logs/go_indexer/"
+NEW_LS_GO_LOGS="/data/logstash_logs/logbak/go_indexer/"
 
 # 定义logstash node日志目录
 OLD_LS_NODE_LOGS="/data/logstash_logs/node_indexer/"
-NEW_LS_NODE_LOGS="/data/logbak/logstash_logs/node_indexer/"
+NEW_LS_NODE_LOGS="/data/logstash_logs/logbak/node_indexer/"
 
 # 定义logstash php日志目录
 OLD_LS_PHP_LOGS="/data/logstash_logs/php_indexer/"
-NEW_LS_PHP_LOGS="/data/logbak/logstash_logs/php_indexer/"
+NEW_LS_PHP_LOGS="/data/logstash_logs/logbak/php_indexer/"
 
 # 原来使用echo $TODAY_DT>$OLD_LS_GO_LOGS/logstash_go.out当文件被占用的时候不能有效的清空文件内容
 # 所以修改为使用cat /dev/null>$OLD_LS_GO_LOGS/logstash_go.out方式清空文件内容
@@ -95,7 +95,7 @@ done
 
 # 修改KEEP_CLEAN_FLAG=1开启定期清理
 KEEP_CLEAN_FLAG=0
-KEEP_DAYS=30
+KEEP_DAYS=3
 
 if [ $KEEP_CLEAN_FLAG == 1 ]; then
   if [ -d "${NEW_LS_GO_LOGS}" ]; then
