@@ -1,0 +1,202 @@
+{
+  "template": "node_track_logs_index_*",
+  "order":0,
+  "settings": {
+      "index.number_of_replicas": "1",
+      "index.number_of_shards": "5",
+      "index.refresh_interval": "10s"
+  },
+  "mappings": {
+    "_default_": {
+      "_all": {
+        "enabled": false
+      },
+      "dynamic_templates": [
+        {
+          "my_template": {
+            "match_mapping_type": "string",
+            "mapping": {
+              "type": "string",
+              "fields": {
+                "raw": {
+                  "type": "string",
+                  "index": "not_analyzed"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "node_track": {
+      "properties": {
+        "timestamp": {
+          "format": "strict_date_optional_time||epoch_millis",
+          "type": "date"
+        },
+        "message": {
+          "type": "string",
+          "index": "not_analyzed"
+        },
+        "level": {
+          "type": "string",
+          "index": "not_analyzed"
+        },
+        "host": {
+          "type": "string",
+          "index": "not_analyzed"
+        },
+        "logs": {
+          "properties": {
+            "uid": {
+              "type": "string",
+              "index": "not_analyzed"
+            },
+            "status": {
+              "type": "string",
+              "index": "not_analyzed"
+            },
+            "did": {
+              "type": "long",
+              "fields": {
+                "as_string": {
+                  "type": "string",
+                  "index": "not_analyzed"
+                }
+              }
+            },
+            "device-id": {
+              "type": "string",
+              "index": "not_analyzed"
+            },
+            "device_id": {
+              "type": "string",
+              "index": "not_analyzed"
+            },
+            "errorMsg": {
+              "type": "string",
+              "analyzer": "ik",
+              "search_analyzer": "ik_smart",
+              "fields": {
+                "raw": {
+                  "type": "string",
+                  "index": "not_analyzed"
+                }
+              }
+            },
+            "rpid": {
+              "type": "string",
+              "index": "not_analyzed"
+            },
+            "url": {
+              "type": "string",
+              "analyzer": "ik",
+              "search_analyzer": "ik_smart",
+              "fields": {
+                "raw": {
+                  "type": "string",
+                  "index": "not_analyzed"
+                }
+              }
+            },
+            "errorStatus": {
+              "type": "long",
+              "fields": {
+                "as_string": {
+                  "type": "string",
+                  "index": "not_analyzed"
+                }
+              }
+            },
+            "ip": {
+              "type": "string",
+              "index": "not_analyzed"
+            },
+            "timestamp": {
+              "type": "string",
+              "index": "not_analyzed"
+            },
+            "hb_uid": {
+              "type": "long",
+              "fields": {
+                "as_string": {
+                  "type": "string",
+                  "index": "not_analyzed"
+                }
+              }
+            },
+            "duid": {
+              "type": "string",
+              "index": "not_analyzed"
+            },
+            "request": {
+              "type": "string",
+              "analyzer": "ik",
+              "search_analyzer": "ik_smart",
+              "fields": {
+                "raw": {
+                  "type": "string",
+                  "index": "not_analyzed"
+                }
+              }
+            },
+            "name": {
+              "type": "string",
+              "analyzer": "ik",
+              "search_analyzer": "ik_smart",
+              "fields": {
+                "raw": {
+                  "type": "string",
+                  "index": "not_analyzed"
+                }
+              }
+            },
+            "errorCode": {
+              "type": "string",
+              "index": "not_analyzed"
+            },
+            "ua": {
+              "type": "string",
+              "analyzer": "ik",
+              "search_analyzer": "ik_smart",
+              "fields": {
+                "raw": {
+                  "type": "string",
+                  "index": "not_analyzed"
+                }
+              }
+            },
+            "server_timestamp": {
+              "type": "long"
+            },
+            "bid": {
+              "type": "long",
+              "fields": {
+                "as_string": {
+                  "type": "string",
+                  "index": "not_analyzed"
+                }
+              }
+            }
+          }
+        },
+        "path": {
+          "type": "string",
+          "index": "not_analyzed"
+        },
+        "type": {
+          "type": "string",
+          "index": "not_analyzed"
+        },
+        "@timestamp": {
+          "format": "strict_date_optional_time||epoch_millis",
+          "type": "date"
+        },
+        "@version": {
+          "type": "string",
+          "index": "not_analyzed"
+        }
+      }
+    }
+  }
+}
