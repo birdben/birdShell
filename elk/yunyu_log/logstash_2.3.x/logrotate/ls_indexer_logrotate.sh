@@ -28,9 +28,15 @@
 # -：表示一个段，如：1-5，就表示1到5点
 # /n：表示每个n的单位执行一次，如：*/1, 就表示每隔1个小时执行一次命令。也可以写成1-23/1.
 
+################################################ 变量定义开始 ################################################
 # 定义时间
-TODAY_DT=`date +%F`
-YESTERDAY_DT=`date -d "yesterday" +%F`
+DAY_DT=`date -d "yesterday" +%F`
+HOUR_DT=`date -d "last-hour" +%Y-%m-%d-%H`
+
+# 按照日期来拆分日志
+# SPLIT_DT=$DAY_DT;
+# 按照小时来拆分日志
+SPLIT_DT=$HOUR_DT;
 
 # 定义logstash go日志目录
 OLD_LS_GO_LOGS="/data/logstash_logs/go_indexer/"
@@ -43,25 +49,31 @@ NEW_LS_NODE_LOGS="/data/logstash_logs/logbak/node_indexer/"
 # 定义logstash php日志目录
 OLD_LS_PHP_LOGS="/data/logstash_logs/php_indexer/"
 NEW_LS_PHP_LOGS="/data/logstash_logs/logbak/php_indexer/"
+################################################ 变量定义结束 ################################################
 
+
+################################################ 切分日志开始 ################################################
 # 原来使用echo $TODAY_DT>$OLD_LS_GO_LOGS/logstash_go.out当文件被占用的时候不能有效的清空文件内容
 # 所以修改为使用cat /dev/null>$OLD_LS_GO_LOGS/logstash_go.out方式清空文件内容
 # go日志的每日切割，压缩，备份
-cp $OLD_LS_GO_LOGS/logstash_go.out $OLD_LS_GO_LOGS/logstash_go.$YESTERDAY_DT.out && cat /dev/null>$OLD_LS_GO_LOGS/logstash_go.out && gzip $OLD_LS_GO_LOGS/logstash_go.$YESTERDAY_DT.out
-cp $OLD_LS_GO_LOGS/logstash_go.err $OLD_LS_GO_LOGS/logstash_go.$YESTERDAY_DT.err && cat /dev/null>$OLD_LS_GO_LOGS/logstash_go.err && gzip $OLD_LS_GO_LOGS/logstash_go.$YESTERDAY_DT.err
-cp $OLD_LS_GO_LOGS/logstash_go_beginning.out $OLD_LS_GO_LOGS/logstash_go_beginning.$YESTERDAY_DT.out && cat /dev/null>$OLD_LS_GO_LOGS/logstash_go_beginning.out && gzip $OLD_LS_GO_LOGS/logstash_go_beginning.$YESTERDAY_DT.out
-cp $OLD_LS_GO_LOGS/logstash_go_beginning.err $OLD_LS_GO_LOGS/logstash_go_beginning.$YESTERDAY_DT.err && cat /dev/null>$OLD_LS_GO_LOGS/logstash_go_beginning.err && gzip $OLD_LS_GO_LOGS/logstash_go_beginning.$YESTERDAY_DT.err
+cp $OLD_LS_GO_LOGS/logstash_go.out $OLD_LS_GO_LOGS/logstash_go.$SPLIT_DT.out && cat /dev/null>$OLD_LS_GO_LOGS/logstash_go.out && gzip $OLD_LS_GO_LOGS/logstash_go.$SPLIT_DT.out
+cp $OLD_LS_GO_LOGS/logstash_go.err $OLD_LS_GO_LOGS/logstash_go.$SPLIT_DT.err && cat /dev/null>$OLD_LS_GO_LOGS/logstash_go.err && gzip $OLD_LS_GO_LOGS/logstash_go.$SPLIT_DT.err
+cp $OLD_LS_GO_LOGS/logstash_go_beginning.out $OLD_LS_GO_LOGS/logstash_go_beginning.$SPLIT_DT.out && cat /dev/null>$OLD_LS_GO_LOGS/logstash_go_beginning.out && gzip $OLD_LS_GO_LOGS/logstash_go_beginning.$SPLIT_DT.out
+cp $OLD_LS_GO_LOGS/logstash_go_beginning.err $OLD_LS_GO_LOGS/logstash_go_beginning.$SPLIT_DT.err && cat /dev/null>$OLD_LS_GO_LOGS/logstash_go_beginning.err && gzip $OLD_LS_GO_LOGS/logstash_go_beginning.$SPLIT_DT.err
 # node日志的每日切割，压缩，备份
-cp $OLD_LS_NODE_LOGS/logstash_node.out $OLD_LS_NODE_LOGS/logstash_node.$YESTERDAY_DT.out && cat /dev/null>$OLD_LS_NODE_LOGS/logstash_node.out && gzip $OLD_LS_NODE_LOGS/logstash_node.$YESTERDAY_DT.out
-cp $OLD_LS_NODE_LOGS/logstash_node.err $OLD_LS_NODE_LOGS/logstash_node.$YESTERDAY_DT.err && cat /dev/null>$OLD_LS_NODE_LOGS/logstash_node.err && gzip $OLD_LS_NODE_LOGS/logstash_node.$YESTERDAY_DT.err
-cp $OLD_LS_NODE_LOGS/logstash_node_beginning.out $OLD_LS_NODE_LOGS/logstash_node_beginning.$YESTERDAY_DT.out && cat /dev/null>$OLD_LS_NODE_LOGS/logstash_node_beginning.out && gzip $OLD_LS_NODE_LOGS/logstash_node_beginning.$YESTERDAY_DT.out
-cp $OLD_LS_NODE_LOGS/logstash_node_beginning.err $OLD_LS_NODE_LOGS/logstash_node_beginning.$YESTERDAY_DT.err && cat /dev/null>$OLD_LS_NODE_LOGS/logstash_node_beginning.err && gzip $OLD_LS_NODE_LOGS/logstash_node_beginning.$YESTERDAY_DT.err
+cp $OLD_LS_NODE_LOGS/logstash_node.out $OLD_LS_NODE_LOGS/logstash_node.$SPLIT_DT.out && cat /dev/null>$OLD_LS_NODE_LOGS/logstash_node.out && gzip $OLD_LS_NODE_LOGS/logstash_node.$SPLIT_DT.out
+cp $OLD_LS_NODE_LOGS/logstash_node.err $OLD_LS_NODE_LOGS/logstash_node.$SPLIT_DT.err && cat /dev/null>$OLD_LS_NODE_LOGS/logstash_node.err && gzip $OLD_LS_NODE_LOGS/logstash_node.$SPLIT_DT.err
+cp $OLD_LS_NODE_LOGS/logstash_node_beginning.out $OLD_LS_NODE_LOGS/logstash_node_beginning.$SPLIT_DT.out && cat /dev/null>$OLD_LS_NODE_LOGS/logstash_node_beginning.out && gzip $OLD_LS_NODE_LOGS/logstash_node_beginning.$SPLIT_DT.out
+cp $OLD_LS_NODE_LOGS/logstash_node_beginning.err $OLD_LS_NODE_LOGS/logstash_node_beginning.$SPLIT_DT.err && cat /dev/null>$OLD_LS_NODE_LOGS/logstash_node_beginning.err && gzip $OLD_LS_NODE_LOGS/logstash_node_beginning.$SPLIT_DT.err
 # php日志的每日切割，压缩，备份
-cp $OLD_LS_PHP_LOGS/logstash_php.out $OLD_LS_PHP_LOGS/logstash_php.$YESTERDAY_DT.out && cat /dev/null>$OLD_LS_PHP_LOGS/logstash_php.out && gzip $OLD_LS_PHP_LOGS/logstash_php.$YESTERDAY_DT.out
-cp $OLD_LS_PHP_LOGS/logstash_php.err $OLD_LS_PHP_LOGS/logstash_php.$YESTERDAY_DT.err && cat /dev/null>$OLD_LS_PHP_LOGS/logstash_php.err && gzip $OLD_LS_PHP_LOGS/logstash_php.$YESTERDAY_DT.err
-cp $OLD_LS_PHP_LOGS/logstash_php_beginning.out $OLD_LS_PHP_LOGS/logstash_php_beginning.$YESTERDAY_DT.out && cat /dev/null>$OLD_LS_PHP_LOGS/logstash_php_beginning.out && gzip $OLD_LS_PHP_LOGS/logstash_php_beginning.$YESTERDAY_DT.out
-cp $OLD_LS_PHP_LOGS/logstash_php_beginning.err $OLD_LS_PHP_LOGS/logstash_php_beginning.$YESTERDAY_DT.err && cat /dev/null>$OLD_LS_PHP_LOGS/logstash_php_beginning.err && gzip $OLD_LS_PHP_LOGS/logstash_php_beginning.$YESTERDAY_DT.err
+cp $OLD_LS_PHP_LOGS/logstash_php.out $OLD_LS_PHP_LOGS/logstash_php.$SPLIT_DT.out && cat /dev/null>$OLD_LS_PHP_LOGS/logstash_php.out && gzip $OLD_LS_PHP_LOGS/logstash_php.$SPLIT_DT.out
+cp $OLD_LS_PHP_LOGS/logstash_php.err $OLD_LS_PHP_LOGS/logstash_php.$SPLIT_DT.err && cat /dev/null>$OLD_LS_PHP_LOGS/logstash_php.err && gzip $OLD_LS_PHP_LOGS/logstash_php.$SPLIT_DT.err
+cp $OLD_LS_PHP_LOGS/logstash_php_beginning.out $OLD_LS_PHP_LOGS/logstash_php_beginning.$SPLIT_DT.out && cat /dev/null>$OLD_LS_PHP_LOGS/logstash_php_beginning.out && gzip $OLD_LS_PHP_LOGS/logstash_php_beginning.$SPLIT_DT.out
+cp $OLD_LS_PHP_LOGS/logstash_php_beginning.err $OLD_LS_PHP_LOGS/logstash_php_beginning.$SPLIT_DT.err && cat /dev/null>$OLD_LS_PHP_LOGS/logstash_php_beginning.err && gzip $OLD_LS_PHP_LOGS/logstash_php_beginning.$SPLIT_DT.err
+################################################ 切分日志结束 ################################################
 
+
+################################################ 日志备份开始 ################################################
 # find -time用法
 # mtime(modify time) : 最后一次修改文件或目录的时间
 # ctime(change time) : 最后一次改变文件或目录(改变的是原数据即:属性)的时间
@@ -92,7 +104,10 @@ done
 for gzFile in `find $OLD_LS_PHP_LOGS -mtime +1 | grep "\.gz"`; do
 	mv $gzFile ${NEW_LS_PHP_LOGS}
 done
+################################################ 日志备份结束 ################################################
 
+
+################################################ 清理日志开始 ################################################
 # 修改KEEP_CLEAN_FLAG=1开启定期清理
 KEEP_CLEAN_FLAG=0
 KEEP_DAYS=3
@@ -117,3 +132,4 @@ if [ $KEEP_CLEAN_FLAG == 1 ]; then
     find "${NEW_LS_PHP_LOGS}" -type f -name "logstash_php*.gz" -mtime +${KEEP_DAYS} -exec rm -f {} \;
   fi
 fi
+################################################ 清理日志结束 ################################################
