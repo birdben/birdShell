@@ -81,16 +81,16 @@ cp $OLD_LS_PHP_LOGS/logstash_php_beginning.err $OLD_LS_PHP_LOGS/logstash_php_beg
 # find $OLD_LS_GO_LOGS -maxdepth 1 -type f -name "*" ! -name "*.gz"  ! -name "*.zip" ! -name "*.pid" ! -type l -mtime +1 | xargs gzip
 
 # 将前三日go日志备份到备份目录
-for gzFile in `find $OLD_LS_GO_LOGS -mtime +1 | grep "\.gz"` do
-	mv $gzFile $NEW_LS_GO_LOGS/
+for gzFile in `find $OLD_LS_GO_LOGS -mtime +1 | grep "\.gz"`; do
+	mv $gzFile ${NEW_LS_GO_LOGS}
 done
 # 将前三日node日志备份到备份目录
-for gzFile in `find $OLD_LS_NODE_LOGS -mtime +1 | grep "\.gz"` do
-	mv $gzFile $NEW_LS_NODE_LOGS/
+for gzFile in `find $OLD_LS_NODE_LOGS -mtime +1 | grep "\.gz"`; do
+	mv $gzFile ${NEW_LS_NODE_LOGS}
 done
 # 将前三日php日志备份到备份目录
-for gzFile in `find $OLD_LS_PHP_LOGS -mtime +1 | grep "\.gz"` do
-	mv $gzFile $NEW_LS_PHP_LOGS/
+for gzFile in `find $OLD_LS_PHP_LOGS -mtime +1 | grep "\.gz"`; do
+	mv $gzFile ${NEW_LS_PHP_LOGS}
 done
 
 # 修改KEEP_CLEAN_FLAG=1开启定期清理
