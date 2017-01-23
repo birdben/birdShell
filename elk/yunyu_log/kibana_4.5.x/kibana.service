@@ -35,7 +35,7 @@ start() {
     fi
 
     cd ${KB_HOME}/bin
-    nohup kibana 1>${KB_LOG_FOLDER}/${KB_NAME}.out 2>${KB_LOG_FOLDER}/${KB_NAME}.err &
+    nohup kibana 1>>${KB_LOG_FOLDER}/${KB_NAME}.out 2>>${KB_LOG_FOLDER}/${KB_NAME}.err &
     sleep 3
     PID=`cat "${KB_PID_FILE}"`
     echo "${KB_NAME} started. PID:$PID" 
