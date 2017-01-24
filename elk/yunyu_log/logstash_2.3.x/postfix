@@ -10,3 +10,5 @@ GO_LOGMSG (.*)
 PHP_LOGS \[%{PHP_TIMESTAMP:timestamp}\] %{DATA:type}\.%{DATA:level}: %{PHP_LOGMSG:msg}
 PHP_TIMESTAMP (\d{4})-(0\d{1}|1[0-2])-(0\d{1}|[12]\d{1}|3[01]) (0\d{1}|1\d{1}|2[0-3]):[0-5]\d{1}:([0-5]\d{1})
 PHP_LOGMSG (.*)
+
+NODE_ACCESS_LOGS %{GREEDYDATA:client_ip} \[%{HTTPDATE:client_timestamp}\] "%{GREEDYDATA:http_method} %{GREEDYDATA:url} HTTP/%{NUMBER:http_version}" %{GREEDYDATA:status_code} %{GREEDYDATA:http_bytes} "%{GREEDYDATA:refer_url}" "%{GREEDYDATA:ua}" %{GREEDYDATA:device_id} %{GREEDYDATA:sdk_version}
