@@ -1,0 +1,164 @@
+{
+  "template": "nginx_access_logs_index_*",
+  "order":0,
+  "settings": {
+      "index.number_of_replicas": "1",
+      "index.number_of_shards": "5",
+      "index.refresh_interval": "10s"
+  },
+  "mappings": {
+    "_default_": {
+      "_all": {
+        "enabled": false
+      },
+      "dynamic_templates": [
+        {
+          "my_string": {
+            "match_mapping_type": "string",
+            "mapping": {
+              "type": "string",
+              "fields": {
+                "raw": {
+                  "type": "string",
+                  "index": "not_analyzed"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "nginx_access": {
+      "properties": {
+        "client_ip": {
+          "type": "ip"
+        },
+        "server_ip": {
+          "type": "ip"
+        },
+        "ident": {
+          "type": "string",
+          "index": "not_analyzed"
+        },
+        "auth": {
+          "type": "string",
+          "index": "not_analyzed"
+        },
+        "client_timestamp": {
+          "type": "string",
+          "index": "not_analyzed"
+        },
+        "http_method": {
+          "type": "string",
+          "index": "not_analyzed"
+        },
+        "http_version": {
+          "type": "string",
+          "index": "not_analyzed"
+        },
+        "url": {
+          "type": "string",
+          "analyzer": "ik",
+          "search_analyzer": "ik_smart",
+          "fields": {
+            "raw": {
+              "type": "string",
+              "index": "not_analyzed"
+            }
+          }
+        },
+        "refer_url": {
+          "type": "string",
+          "analyzer": "ik",
+          "search_analyzer": "ik_smart",
+          "fields": {
+            "raw": {
+              "type": "string",
+              "index": "not_analyzed"
+            }
+          }
+        },
+        "status_code": {
+          "type": "string",
+          "index": "not_analyzed"
+        },
+        "http_bytes": {
+          "type": "string",
+          "index": "not_analyzed"
+        },
+        "ua": {
+          "type": "string",
+          "analyzer": "ik",
+          "search_analyzer": "ik_smart",
+          "fields": {
+            "raw": {
+              "type": "string",
+              "index": "not_analyzed"
+            }
+          }
+        },
+        "device_id": {
+          "type": "string",
+          "index": "not_analyzed"
+        },
+        "sdk_version": {
+          "type": "string",
+          "index": "not_analyzed"
+        },
+        "cookie": {
+          "type": "string",
+          "index": "not_analyzed"
+        },
+        "geoip": {
+          "dynamic": true,
+          "type": "object",
+          "properties": {
+            "location": {
+              "type": "geo_point"
+            },
+            "ip": {
+              "type": "ip"
+            }
+          }
+        },
+        "request_time": {
+          "type": "float"
+        },
+        "upstream_response_time": {
+          "type": "float"
+        },
+        "fastcgi_script_name": {
+          "type": "string",
+          "analyzer": "ik",
+          "search_analyzer": "ik_smart",
+          "fields": {
+            "raw": {
+              "type": "string",
+              "index": "not_analyzed"
+            }
+          }
+        },
+        "host": {
+          "type": "string",
+          "index": "not_analyzed"
+        },
+        "path": {
+          "type": "string",
+          "index": "not_analyzed"
+        },
+        "type": {
+          "type": "string",
+          "index": "not_analyzed"
+        },
+        "@timestamp": {
+          "format": "strict_date_optional_time||epoch_millis",
+          "type": "date"
+        },
+        "@version": {
+          "type": "string",
+          "index": "not_analyzed"
+        }
+      }
+    }
+  }
+}
