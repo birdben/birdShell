@@ -1,0 +1,11 @@
+# 注意这里123456789和987654321是Request_ID，但不是一定会存在的
+# Started的IP地址是客户端IP地址，Completed的IP地址是服务端IP地址和Port端口号
+
+[martini] 2017/02/06 16:49:40 Started POST /token/sign for 123.56.10.31 123456789
+[martini] 2017/02/06 16:49:40 Completed 200 OK 123456789 POST /token/sign 123.156.10.111 in 0.018347586000000003
+[martini] 2017/02/06 16:49:40 Started POST /token/sign for 10.253.41.201:58012
+[martini] 2017/02/06 16:49:40 Completed 200 OK  POST /token/sign 10.253.41.201:58012 in 0.008118635
+[martini] 2017/02/06 16:49:40 Started POST /token/sign for 10.253.41.201:58015
+[martini] 2017/02/06 16:49:40 Completed 200 OK  POST /token/sign 10.253.41.201:58015 in 0.009052184000000001
+[martini] 2017/02/06 16:49:41 Started GET /api/test for 211.100.57.161 987654321
+[martini] 2017/02/06 16:49:41 Completed 200 OK 987654321 GET /api/test 111.120.157.161 in 0.007549005
