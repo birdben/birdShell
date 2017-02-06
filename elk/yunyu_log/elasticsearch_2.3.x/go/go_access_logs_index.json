@@ -1,0 +1,81 @@
+{
+  "mappings": {
+    "_default_": {
+      "_all": {
+        "enabled": true
+      },
+      "dynamic_templates": [
+        {
+          "my_template": {
+            "match_mapping_type": "string",
+            "mapping": {
+              "type": "string",
+              "fields": {
+                "raw": {
+                  "type": "string",
+                  "index": "not_analyzed"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "go_access": {
+      "properties": {
+        "timestamp": {
+          "type": "string",
+          "index": "not_analyzed"
+        },
+        "status": {
+          "type": "string",
+          "index": "not_analyzed"
+        },
+        "status_code": {
+          "type": "string",
+          "index": "not_analyzed"
+        },
+        "status_desc": {
+          "type": "string",
+          "index": "not_analyzed"
+        },
+        "request_id": {
+          "type": "string",
+          "index": "not_analyzed"
+        },
+        "method": {
+          "type": "string",
+          "index": "not_analyzed"
+        },
+        "url": {
+          "type": "string",
+          "analyzer": "ik",
+          "search_analyzer": "ik_smart"
+        },
+        "uri_host": {
+          "type": "string",
+          "index": "not_analyzed"
+        },
+        "request_time": {
+          "type": "float"
+        },
+        "type": {
+          "type": "string",
+          "index": "not_analyzed"
+        },
+        "access_type": {
+          "type": "string",
+          "index": "not_analyzed"
+        },
+        "@timestamp": {
+          "format": "strict_date_optional_time||epoch_millis",
+          "type": "date"
+        },
+        "@version": {
+          "type": "string",
+          "index": "not_analyzed"
+        }
+      }
+    }
+  }
+}
