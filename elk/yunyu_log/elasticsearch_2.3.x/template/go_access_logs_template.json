@@ -57,7 +57,13 @@
         "url": {
           "type": "string",
           "analyzer": "ik",
-          "search_analyzer": "ik_smart"
+          "search_analyzer": "ik_smart",
+          "fields": {
+            "raw": {
+              "type": "string",
+              "index": "not_analyzed"
+            }
+          }
         },
         "uri_host": {
           "type": "string",
