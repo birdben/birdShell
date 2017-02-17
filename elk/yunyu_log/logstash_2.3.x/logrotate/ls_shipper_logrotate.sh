@@ -49,6 +49,10 @@ NEW_LS_NODE_LOGS="/data/logstash_logs/logbak/node_shipper/"
 # 定义logstash php日志目录
 OLD_LS_PHP_LOGS="/data/logstash_logs/php_shipper/"
 NEW_LS_PHP_LOGS="/data/logstash_logs/logbak/php_shipper/"
+
+# 定义logstash java日志目录
+OLD_LS_JAVA_LOGS="/data/logstash_logs/java_shipper/"
+NEW_LS_JAVA_LOGS="/data/logstash_logs/logbak/java_shipper/"
 ################################################ 变量定义结束 ################################################
 
 
@@ -70,6 +74,11 @@ cp $OLD_LS_PHP_LOGS/logstash_php.out $OLD_LS_PHP_LOGS/logstash_php.$SPLIT_DT.out
 cp $OLD_LS_PHP_LOGS/logstash_php.err $OLD_LS_PHP_LOGS/logstash_php.$SPLIT_DT.err && cat /dev/null>$OLD_LS_PHP_LOGS/logstash_php.err && gzip $OLD_LS_PHP_LOGS/logstash_php.$SPLIT_DT.err
 cp $OLD_LS_PHP_LOGS/logstash_php_beginning.out $OLD_LS_PHP_LOGS/logstash_php_beginning.$SPLIT_DT.out && cat /dev/null>$OLD_LS_PHP_LOGS/logstash_php_beginning.out && gzip $OLD_LS_PHP_LOGS/logstash_php_beginning.$SPLIT_DT.out
 cp $OLD_LS_PHP_LOGS/logstash_php_beginning.err $OLD_LS_PHP_LOGS/logstash_php_beginning.$SPLIT_DT.err && cat /dev/null>$OLD_LS_PHP_LOGS/logstash_php_beginning.err && gzip $OLD_LS_PHP_LOGS/logstash_php_beginning.$SPLIT_DT.err
+# java日志的每日切割，压缩，备份
+cp $OLD_LS_JAVA_LOGS/logstash_java.out $OLD_LS_JAVA_LOGS/logstash_java.$SPLIT_DT.out && cat /dev/null>$OLD_LS_JAVA_LOGS/logstash_java.out && gzip $OLD_LS_JAVA_LOGS/logstash_java.$SPLIT_DT.out
+cp $OLD_LS_JAVA_LOGS/logstash_java.err $OLD_LS_JAVA_LOGS/logstash_java.$SPLIT_DT.err && cat /dev/null>$OLD_LS_JAVA_LOGS/logstash_java.err && gzip $OLD_LS_JAVA_LOGS/logstash_java.$SPLIT_DT.err
+cp $OLD_LS_JAVA_LOGS/logstash_java_beginning.out $OLD_LS_JAVA_LOGS/logstash_java_beginning.$SPLIT_DT.out && cat /dev/null>$OLD_LS_JAVA_LOGS/logstash_java_beginning.out && gzip $OLD_LS_JAVA_LOGS/logstash_java_beginning.$SPLIT_DT.out
+cp $OLD_LS_JAVA_LOGS/logstash_java_beginning.err $OLD_LS_JAVA_LOGS/logstash_java_beginning.$SPLIT_DT.err && cat /dev/null>$OLD_LS_JAVA_LOGS/logstash_java_beginning.err && gzip $OLD_LS_JAVA_LOGS/logstash_java_beginning.$SPLIT_DT.err
 ################################################ 切分日志结束 ################################################
 
 
@@ -104,6 +113,10 @@ done
 for gzFile in `find $OLD_LS_PHP_LOGS -mtime +1 | grep "\.gz"`; do
 	mv $gzFile ${NEW_LS_PHP_LOGS}
 done
+# 将前三日java日志备份到备份目录
+for gzFile in `find $OLD_LS_JAVA_LOGS -mtime +1 | grep "\.gz"`; do
+  mv $gzFile ${NEW_LS_JAVA_LOGS}
+done
 ################################################ 日志备份结束 ################################################
 
 
@@ -130,6 +143,13 @@ if [ $KEEP_CLEAN_FLAG == 1 ]; then
   if [ -d "${NEW_LS_PHP_LOGS}" ]; then
   	find "${NEW_LS_PHP_LOGS}" -type f -name "logstash_php*.gz" -mtime +${KEEP_DAYS} -exec ls -l {} \;
     find "${NEW_LS_PHP_LOGS}" -type f -name "logstash_php*.gz" -mtime +${KEEP_DAYS} -exec rm -f {} \;
+  fi
+fi
+
+if [ $KEEP_CLEAN_FLAG == 1 ]; then
+  if [ -d "${NEW_LS_JAVA_LOGS}" ]; then
+    find "${NEW_LS_JAVA_LOGS}" -type f -name "logstash_java*.gz" -mtime +${KEEP_DAYS} -exec ls -l {} \;
+    find "${NEW_LS_JAVA_LOGS}" -type f -name "logstash_java*.gz" -mtime +${KEEP_DAYS} -exec rm -f {} \;
   fi
 fi
 ################################################ 清理日志结束 ################################################
