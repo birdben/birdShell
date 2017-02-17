@@ -7,7 +7,7 @@ SYS_USER_ID="501"
 
 LS_NAME="logstash_java_beginning"
 LS_DESC="Logstash 2.3.4 Shipper logstash_java_begining"
-LS_PID_FOLDER="/var/run/logstash"
+LS_PID_FOLDER="${LS_HOME}/ls_pid"
 LS_PID_FILE="${LS_PID_FOLDER}/${LS_NAME}.pid"
 LS_LOG_FOLDER="${LS_HOME}/logs/java_shipper"
 LS_CONF_FOLDER="${LS_HOME}/conf/java_shipper"

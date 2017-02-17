@@ -8,7 +8,7 @@ SYS_USER_ID="501"
 
 KB_NAME="kibana"
 KB_DESC="Kibana 4.5.4"
-KB_PID_FOLDER="/var/run/kibana"
+KB_PID_FOLDER="${KB_HOME}/kb_pid"
 KB_PID_FILE="${KB_PID_FOLDER}/${KB_NAME}.pid"
 KB_LOG_FOLDER="${KB_HOME}/logs"
 

@@ -7,7 +7,7 @@ SYS_USER_ID="501"
 
 ES_NAME="elasticsearch"
 ES_DESC="Elasticsearch 2.3.5"
-ES_PID_FOLDER="/var/run/elasticsearch"
+ES_PID_FOLDER="${ES_HOME}/es_pid"
 ES_PID_FILE="${ES_PID_FOLDER}/${ES_NAME}.pid"
 ES_LOG_FOLDER="${ES_HOME}/logs"
 
