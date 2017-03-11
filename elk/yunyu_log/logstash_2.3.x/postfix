@@ -19,7 +19,7 @@ NODE_ACCESS_LOGS %{GREEDYDATA:client_ip} \[%{HTTPDATE:client_timestamp}\] "%{GRE
 
 NGUSERNAME [a-zA-Z\.\@\-\+_%]+
 NGUSER %{NGUSERNAME}
-NGINX_ACCESS_LOGS %{IPORHOST:server_ip} %{NGUSER:ident} %{NGUSER:auth} \[%{HTTPDATE:client_timestamp}\] "%{WORD:http_method} %{DATA:url} HTTP/%{NUMBER:http_version}" %{NUMBER:status_code} (?:%{NUMBER:http_bytes}|-) "(?:%{DATA:refer_url}|-)" "%{DATA:ua}" \[(?:%{GREEDYDATA:cookie}|-)\] "(?:%{IPORHOST:client_ip}|-)" (?:%{NUMBER:request_time}|-) (?:%{NUMBER:upstream_response_time}|-) %{GREEDYDATA:fastcgi_script_name}
+NGINX_ACCESS_LOGS %{IPORHOST:server_ip} %{NGUSER:ident} %{NGUSER:auth} \[%{HTTPDATE:client_timestamp}\] "%{WORD:http_method} %{DATA:url} HTTP/%{NUMBER:http_version}" %{NUMBER:status_code} (?:%{NUMBER:http_bytes}|-) "(?:%{DATA:refer_url}|-)" "%{DATA:ua}" \[(?:%{GREEDYDATA:cookie}|-)\] "(?:%{DATA:client_ip}|-)" (?:%{NUMBER:request_time}|-) (?:%{NUMBER:upstream_response_time}|-) %{GREEDYDATA:fastcgi_script_name}
 
 JAVA_TIMESTAMP %{YEAR}-%{MONTHNUM}-%{MONTHDAY} %{TIME}
 JAVA_LOGS %{JAVA_TIMESTAMP:timestamp} \[ %{DATA:level}\] - %{DATA:class_name} -%{DATA:file_name}.java\(%{DATA:line}\) -%{GREEDYDATA:msg}
