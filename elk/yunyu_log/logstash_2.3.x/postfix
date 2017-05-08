@@ -11,6 +11,8 @@ GO_LOGMSG (.*)
 GO_ACCESS_TIMESTAMP %{YEAR}/%{MONTHNUM}/%{MONTHDAY} %{TIME}
 GO_ACCESS_LOGS \[%{DATA:access_type}\] %{GO_ACCESS_TIMESTAMP:timestamp} %{DATA:status} %{DATA:status_code} %{DATA:status_desc} %{DATA:request_id} %{DATA:method} %{DATA:url} %{URIHOST:uri_host} in %{NUMBER:request_time}
 
+GO_AEGIS_LOGS %{GO_INFO:info}%{GO_TIMESTAMP:timestamp}%{DATA:sss}%{GO_SPACE:space}%{DATA:threadid} %{DATA:file}:%{DATA:line}] %{GO_LOGMSG:aegis_msg}
+
 PHP_LOGS \[%{PHP_TIMESTAMP:timestamp}\] %{DATA:type}\.%{DATA:level}: %{PHP_LOGMSG:msg}
 PHP_TIMESTAMP (\d{4})-(0\d{1}|1[0-2])-(0\d{1}|[12]\d{1}|3[01]) (0\d{1}|1\d{1}|2[0-3]):[0-5]\d{1}:([0-5]\d{1})
 PHP_LOGMSG (.*)

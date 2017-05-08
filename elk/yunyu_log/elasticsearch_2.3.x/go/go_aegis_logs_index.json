@@ -1,0 +1,377 @@
+{
+  "mappings" : {
+    "_default_" : {
+      "_all" : {
+        "enabled" : false
+      },
+      "dynamic_templates" : [ {
+        "my_string" : {
+          "mapping" : {
+            "type" : "string",
+            "fields" : {
+              "raw" : {
+                "index" : "not_analyzed",
+                "type" : "string"
+              }
+            }
+          },
+          "match_mapping_type" : "string"
+        }
+      }, {
+        "hash_propeties" : {
+          "mapping" : {
+            "index" : "not_analyzed",
+            "type" : "string"
+          },
+          "path_match" : "_hash.*"
+        }
+      } ],
+      "properties" : {
+        "@timestamp" : {
+          "type" : "date",
+          "format" : "strict_date_optional_time||epoch_millis"
+        },
+        "@version" : {
+          "type" : "string",
+          "index" : "not_analyzed"
+        },
+        "file" : {
+          "type" : "string",
+          "index" : "not_analyzed"
+        },
+        "host" : {
+          "type" : "string",
+          "index" : "not_analyzed"
+        },
+        "info" : {
+          "type" : "string",
+          "index" : "not_analyzed"
+        },
+        "line" : {
+          "type" : "string",
+          "index" : "not_analyzed"
+        },
+        "logType" : {
+          "type" : "string",
+          "index" : "not_analyzed"
+        },
+        "msg" : {
+          "type" : "string",
+          "analyzer" : "ik",
+          "search_analyzer" : "ik_smart"
+        },
+        "path" : {
+          "type" : "string",
+          "index" : "not_analyzed"
+        },
+        "requestId" : {
+          "type" : "string",
+          "index" : "not_analyzed"
+        },
+        "threadid" : {
+          "type" : "string",
+          "index" : "not_analyzed"
+        },
+        "timestamp" : {
+          "type" : "string",
+          "index" : "not_analyzed"
+        },
+        "type" : {
+          "type" : "string",
+          "index" : "not_analyzed"
+        }
+      }
+    },
+    "go_aegis" : {
+      "_all" : {
+        "enabled" : false
+      },
+      "dynamic_templates" : [ {
+        "my_string" : {
+          "mapping" : {
+            "type" : "string",
+            "fields" : {
+              "raw" : {
+                "index" : "not_analyzed",
+                "type" : "string"
+              }
+            }
+          },
+          "match_mapping_type" : "string"
+        }
+      }, {
+        "hash_propeties" : {
+          "mapping" : {
+            "index" : "not_analyzed",
+            "type" : "string"
+          },
+          "path_match" : "_hash.*"
+        }
+      } ],
+      "properties" : {
+        "@timestamp" : {
+          "type" : "date",
+          "format" : "strict_date_optional_time||epoch_millis"
+        },
+        "@version" : {
+          "type" : "string",
+          "index" : "not_analyzed"
+        },
+        "context_hash" : {
+          "properties" : {
+            "amount" : {
+              "type" : "string",
+              "fields" : {
+                "raw" : {
+                  "type" : "string",
+                  "index" : "not_analyzed"
+                }
+              }
+            },
+            "bankCardNo" : {
+              "type" : "string",
+              "fields" : {
+                "raw" : {
+                  "type" : "string",
+                  "index" : "not_analyzed"
+                }
+              }
+            },
+            "dealerId" : {
+              "type" : "string",
+              "fields" : {
+                "raw" : {
+                  "type" : "string",
+                  "index" : "not_analyzed"
+                }
+              }
+            },
+            "deviceId" : {
+              "type" : "string",
+              "fields" : {
+                "raw" : {
+                  "type" : "string",
+                  "index" : "not_analyzed"
+                }
+              }
+            },
+            "endBalance" : {
+              "type" : "string",
+              "fields" : {
+                "raw" : {
+                  "type" : "string",
+                  "index" : "not_analyzed"
+                }
+              }
+            },
+            "idfv" : {
+              "type" : "string",
+              "fields" : {
+                "raw" : {
+                  "type" : "string",
+                  "index" : "not_analyzed"
+                }
+              }
+            },
+            "imei" : {
+              "type" : "string",
+              "fields" : {
+                "raw" : {
+                  "type" : "string",
+                  "index" : "not_analyzed"
+                }
+              }
+            },
+            "ip" : {
+              "type" : "string",
+              "fields" : {
+                "raw" : {
+                  "type" : "string",
+                  "index" : "not_analyzed"
+                }
+              }
+            },
+            "mac" : {
+              "type" : "string",
+              "fields" : {
+                "raw" : {
+                  "type" : "string",
+                  "index" : "not_analyzed"
+                }
+              }
+            },
+            "objectId" : {
+              "type" : "string",
+              "fields" : {
+                "raw" : {
+                  "type" : "string",
+                  "index" : "not_analyzed"
+                }
+              }
+            },
+            "orderNo" : {
+              "type" : "string",
+              "fields" : {
+                "raw" : {
+                  "type" : "string",
+                  "index" : "not_analyzed"
+                }
+              }
+            },
+            "payType" : {
+              "type" : "string",
+              "fields" : {
+                "raw" : {
+                  "type" : "string",
+                  "index" : "not_analyzed"
+                }
+              }
+            },
+            "realName" : {
+              "type" : "string",
+              "fields" : {
+                "raw" : {
+                  "type" : "string",
+                  "index" : "not_analyzed"
+                }
+              }
+            },
+            "startBalance" : {
+              "type" : "string",
+              "fields" : {
+                "raw" : {
+                  "type" : "string",
+                  "index" : "not_analyzed"
+                }
+              }
+            },
+            "telephone" : {
+              "type" : "string",
+              "fields" : {
+                "raw" : {
+                  "type" : "string",
+                  "index" : "not_analyzed"
+                }
+              }
+            },
+            "tradeRemark" : {
+              "type" : "string",
+              "fields" : {
+                "raw" : {
+                  "type" : "string",
+                  "index" : "not_analyzed"
+                }
+              }
+            },
+            "tradeTime" : {
+              "type" : "string",
+              "fields" : {
+                "raw" : {
+                  "type" : "string",
+                  "index" : "not_analyzed"
+                }
+              }
+            },
+            "tradeType" : {
+              "type" : "string",
+              "fields" : {
+                "raw" : {
+                  "type" : "string",
+                  "index" : "not_analyzed"
+                }
+              }
+            },
+            "userBindId" : {
+              "type" : "string",
+              "fields" : {
+                "raw" : {
+                  "type" : "string",
+                  "index" : "not_analyzed"
+                }
+              }
+            },
+            "userId" : {
+              "type" : "string",
+              "fields" : {
+                "raw" : {
+                  "type" : "string",
+                  "index" : "not_analyzed"
+                }
+              }
+            },
+            "userIdCard" : {
+              "type" : "string",
+              "fields" : {
+                "raw" : {
+                  "type" : "string",
+                  "index" : "not_analyzed"
+                }
+              }
+            }
+          }
+        },
+        "decision_hash" : {
+          "properties" : {
+            "code" : {
+              "type" : "string",
+              "fields" : {
+                "raw" : {
+                  "type" : "string",
+                  "index" : "not_analyzed"
+                }
+              }
+            },
+            "reason" : {
+              "type" : "long"
+            }
+          }
+        },
+        "file" : {
+          "type" : "string",
+          "index" : "not_analyzed"
+        },
+        "host" : {
+          "type" : "string",
+          "index" : "not_analyzed"
+        },
+        "info" : {
+          "type" : "string",
+          "index" : "not_analyzed"
+        },
+        "line" : {
+          "type" : "string",
+          "index" : "not_analyzed"
+        },
+        "logType" : {
+          "type" : "string",
+          "index" : "not_analyzed"
+        },
+        "msg" : {
+          "type" : "string",
+          "analyzer" : "ik",
+          "search_analyzer" : "ik_smart"
+        },
+        "path" : {
+          "type" : "string",
+          "index" : "not_analyzed"
+        },
+        "requestId" : {
+          "type" : "string",
+          "index" : "not_analyzed"
+        },
+        "threadid" : {
+          "type" : "string",
+          "index" : "not_analyzed"
+        },
+        "timestamp" : {
+          "type" : "string",
+          "index" : "not_analyzed"
+        },
+        "type" : {
+          "type" : "string",
+          "index" : "not_analyzed"
+        }
+      }
+    }
+  }
+}
